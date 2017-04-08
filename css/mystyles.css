@@ -1,0 +1,46 @@
+/* 
+	/****************************************************************************************************
+	R. V. Sampangi. 2017. Solution for Server Side Scripting Assignment 2. In INFX2670: Introduction to 
+	Server Side Scripting, Faculty of Computer Science, Dalhousie University, NS, Canada.
+	***************************************************************************************************
+
+	Custom styles for this CMS assignment
+*/
+
+.myHeading {
+	padding: 18px 0 18px 0;
+}
+
+.myContainer {
+	min-height: 540px;
+}
+
+.myFooter {
+	margin-top: 3.6em;
+	border-top: 1px solid #f2ac00;
+	min-height: 3.6em;
+}
+
+.myFooter p {
+	line-height: 3.6em;
+	vertical-align: middle;
+}
+
+.col-no-left-padding {
+   padding-left: 0 !important;
+   margin-left: 0 !important;
+}
+
+.col-no-right-padding {
+   padding-right: 0 !important;
+   margin-right: 0 !important;
+}
+
+.ruler-with-spacing {
+	margin-top: 2.4em;
+	margin-bottom: 2.4em;
+}
+
+.bottom-margin {
+	margin-bottom: 1.8em;
+}
