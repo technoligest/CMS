@@ -8,8 +8,10 @@ This is the categories page:
 - Includes several other PHP scripts to implement the overall functionality.
 - Allows users to view/edit/add categories.
 -->
-<?php require "../includes/functions.php"; ?>
-<?php include "includes/header.php"; ?>
+<?php
+    require "../includes/functions.php";
+    include "includes/header.php";
+?>
 
 <div class="col-md-8 col-sm-12 col-no-left-padding">
     <?php
@@ -18,7 +20,6 @@ This is the categories page:
     /* Delete a category when the "delete" button is pressed */
     if (isset($_GET['delete_category'])) {
         $delete_this_category = $_GET['delete_category'];
-
         $delete_cat_status = delete_category($delete_this_category);
 
         if ($delete_cat_status) {
@@ -36,11 +37,9 @@ This is the categories page:
 
     /* Function that submits the category to the database */
     if (isset($_POST['add_category'])) {
-        $cat_title = $_POST['cat_title'];
+        $cat_title = test_form_input($_POST['cat_title']);
         insert_category($cat_title);
     }
-
-
     ?>
     <div class="row">
         <div class="col-xs-6">
@@ -67,7 +66,7 @@ This is the categories page:
         <div class="col-xs-6">
             <!-- Displays table containing available Categories -->
 
-            <?php 
+            <?php
             //Retrieves and prints all categories using these statements
             read_all_categories();
             ?>
@@ -76,6 +75,7 @@ This is the categories page:
     </div>
 </div>
 
-<?php include "../includes/sidebar.php"; ?>
-
-<?php include "../includes/footer.php"; ?>
+<?php
+    include "../includes/sidebar.php";
+    include "../includes/footer.php";
+?>

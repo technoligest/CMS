@@ -3,7 +3,7 @@
 
 
 if($_SESSION['role']==2){
-    header("Location: ../../index.php");
+    header("Location: ../index.php");
 }
 
 $db_host = "localhost";
@@ -67,7 +67,7 @@ if(isset($_GET['deletePostId'])){
                     <td>{$row['post_author']}</td>
                     <td>{$row['post_title']}</td>
                     <td>{$row['post_cat_id']}</td>
-                    <td>{$row['post_image']}</td>
+                    <td><img src=\"../images/{$row['post_image']}\" height='50' width='50'></td>
                     <td>{$row['post_tags']}</td>
                     <td>{$row['post_comments']}</td>
                     <td>{$row['post_date']}</td>

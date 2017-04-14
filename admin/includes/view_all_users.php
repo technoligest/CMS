@@ -73,7 +73,7 @@ if(isset($_GET['deleteUserId'])){
                     }
                 echo "
                 <tr>
-                    <td>{$row['user_image']}</td>
+                    <td><img src=\"../images/{$row['user_image']}\" height='50' width='50'></td>
                     <td>{$row['username']}</td>
                     <td>{$row['user_firstname']}</td>
                     <td>{$row['user_lastname']}</td>

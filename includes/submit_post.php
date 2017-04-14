@@ -29,7 +29,7 @@
 			 * This section of the code manages image uploads. As discussed in class,
 			 * we check if the file is of a specified type, and within the allowed file-size.
 			 */
-			$target_file = "images/" . $post_image;
+			$target_file = "../images/" . $post_image;
 			$finfo = finfo_open(FILEINFO_MIME_TYPE);
 			$mime = finfo_file($finfo, $post_image_temp);
 
@@ -43,7 +43,7 @@
 				case 'image/png':
 					if ($post_image_filesize < TWO_MEGA_BYTES) {
 						//Upload the image.
-						move_uploaded_file($post_image_temp, "$target_file");
+                        move_uploaded_file($post_image_temp, "$target_file");
 					}
 					break;
 				
@@ -59,13 +59,10 @@
 		$sql = "INSERT INTO posts(post_cat_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comments, post_status) ";
 		$sql .= "VALUES('$post_category_id','$post_title','$post_author',now(),'$post_image','$post_content','$post_tags','$post_comments','$post_status')";
 
-
 		$submit_post_result = $conn->query($sql);
 
 		if (!$submit_post_result) {
 			die ("Error creating post.<br>" . $conn->error . "<br>");
 		}
 	}
-
-
 ?>

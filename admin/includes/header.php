@@ -111,6 +111,7 @@
 
 					<h1 class="display-1 myHeading">CMS2670
 						<?php
+                         $active = basename($_SERVER['PHP_SELF']);
 							switch ($active) {
 								case "posts.php":
 									echo "<small>&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;POSTS</small>";

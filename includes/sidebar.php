@@ -15,8 +15,41 @@ This script displays the sidebar on all pages:
     <div class="panel panel-default">
 
         <div class="panel-heading">
+            Search
+        </div>
+        <div class="panel-body">
+            <form action="search_results.php" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="search_text">Search Tags</label>
+                    <input type="text" class="form-control" name="search_text" required>
+                </div>
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tags" required> Tags
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="categories"> Categories
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="author"> Authors
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="search" value="Search">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>	
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
             <?php
-            if(!isset($_SESSION) || !isset($_SESSION['loggedIn']) ||  $_SESSION['loggedIn']==FALSE)
+            if(!isset($_SESSION) || !isset($_SESSION['username']) )
                 echo "Login to your account";
             else
                 echo "You're logged in.";
@@ -26,24 +59,24 @@ This script displays the sidebar on all pages:
             <?php
             date_default_timezone_set('America/Halifax');
 
-            if(isset($_GET['unauthAccess']) && $_GET['unauthAccess'] = TRUE){
+            if (isset($_GET['loginError']) && $_GET['loginError']==TRUE) {
+                echo "<p class='text-danger'>Username or password is wrong.</p>";
+                include 'login_form.php';
+            }
+            elseif(isset($_GET['unauthAccess']) && $_GET['unauthAccess'] == TRUE){
                 echo "<p class='text-danger'>You need to log in to access the user profile</p>";
                 include 'login_form.php';
             }
-            else if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==TRUE && $_SESSION['loginError'] == FALSE) {
+            elseif (isset($_SESSION) && isset($_SESSION['username'])) {
                 $user = $_SESSION['username'];
                 echo "<p class='text-primary'>Welcome, $user!<br> You last accessed this site: {$_SESSION['currentDate']} </p>";
-            }
-            elseif (isset($_SESSION) && isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']== FALSE && $_SESSION['loginError'] == TRUE) {
-                echo "<p class='text-danger'>Username or password is wrong.</p>";
-                include 'login_form.php';
             }
             elseif (!isset($_POST['login'])) {
                 include 'login_form.php';
             }
             ?>
 
-            
+
         </div>
     </div>	
 

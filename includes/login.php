@@ -16,34 +16,26 @@ if ($conn->connect_error) {
 
 /* Process data submitted by login form */
 if (isset($_POST['login'])) {
-    $_SESSION['loggedIn'] = FALSE;
-    $_SESSION['loginError'] = FALSE;
-
     $username = $_POST['username'];
     $password = $_POST['password'];
-    echo $username . $password;
+    echo $username . "<br>". $password;
     if ($username != null || $password != null) {
 
-        $query = "SELECT * FROM login WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT * FROM login,users WHERE users.user_id=login.user_id && username = '$username'";
         //echo $query;
         $result = $conn->query($query);
         //die($result->num_rows);
-        if ($result->num_rows >0) {
-            $loggedIn = TRUE;
-            $loginError = FALSE;
-            $row = $result->fetch_assoc();
-
-            $result2 = $conn->query("SELECT * FROM users WHERE user_id = {$row['user_id']}");
-            if($result2->num_rows > 0){
-                $row = $result2->fetch_assoc();
-                $_SESSION['userId'] = $row['user_id'];
-                $_SESSION['firstname'] = $row['user_firstname'];
-                $_SESSION['lastname'] = $row['user_lastname'];
-                $_SESSION['username'] = $_POST['username'];
-                $_SESSION['role'] = $row['user_role'];
-                $_SESSION['loggedIn'] = TRUE;
-                $_SESSION['loginError'] = FALSE;
-            }
+        if ($result->num_rows >0 && ($row = $result->fetch_assoc()) && password_verify($password,$row['password']) ) {
+            
+            
+            
+            $_SESSION['userId'] = $row['user_id'];
+            $_SESSION['firstname'] = $row['user_firstname'];
+            $_SESSION['lastname'] = $row['user_lastname'];
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['role'] = $row['user_role'];
+            $_SESSION['user_image']= $row['user_image'];
+            echo $_SESSION['firstname'] . "<br>".$_SESSION['lastname'];
             if (isset($_COOKIE['cms_access'])) {
                 $_SESSION['currentDate'] = $_COOKIE['cms_access'];
             }
@@ -51,17 +43,14 @@ if (isset($_POST['login'])) {
                 $currentDate = 'never.';
             }
         }
-        else {
-            $_SESSION['loggedIn'] = FALSE;
-            $_SESSION['loginError'] = TRUE;
-            //echo "username or password were wrong";
-        }
     }
 }
 date_default_timezone_set('America/Halifax');
 setcookie("cms_access", Date("M d, Y g:i a"), time() + 365*400, "/");
-
-
-header("location: ../index.php");
+if(isset($_SESSION) && isset($_SESSION['userId'])){
+    header("location: ../index.php");
+}else{
+    header("location: ../index.php?loginError=true");
+}
 exit();
 ?>

@@ -9,7 +9,10 @@
 //1 is author
 //2 subscriber
 ?>
+<?php
 
+    if(isset($_SESSION) && isset($_SESSION['username'])){
+?>
 
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -20,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">CMS2670</a>
+            <a class="navbar-brand" href="../index.php">CMS2670</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,10 +38,14 @@
                 <?php
                     if($_SESSION['role']==0 || $_SESSION['role']==1){
                 ?>
+                <li <?php if ($active == "dashboard.php") { echo "class='active'"; } ?>>
+                    <a href="dashboard.php">Dashboard<span class="sr-only">(current)</span></a>
+                </li>
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
+                    <li class="dropdown <?php if ($active == "view_posts.php" || $active == "add_post.php") { echo " active"; } ?>" >
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Posts
-                            <b class="caret"></b></a>
+                            <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href='view_posts.php'>View Posts</a></li>
                             <li><a href='add_post.php'>Add Post</a></li>
@@ -50,7 +57,7 @@
                     <a href="categories.php">Categories<span class="sr-only">(current)</span></a>
                 </li>
                 <li <?php if ($active == "comments.php") { echo "class='active'"; } ?>>
-                    <a href="#">Comments<span class="sr-only">(current)</span></a>
+                    <a href="comments.php">Comments<span class="sr-only">(current)</span></a>
                 </li>
                 <?php
                     }
@@ -58,8 +65,8 @@
                 ?>
                 
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Users
+                    <li class="dropdown <?php if ($active == "view_users.php" || $active == "add_user.php") { echo " active"; } ?>">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown"><i class="fa fa-user"></i>Users
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href='view_users.php'>View All Users</a></li>
@@ -75,23 +82,11 @@
                     <a href="profile.php">Profile<span class="sr-only">(current)</span></a>
                 </li>
                 <!-- List of categories -->
-                
-
-                
-                
-
-
-
-
-
-
 
             </ul>
-            <?php
-            if(isset($_SESSION) && isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']== TRUE){
-            ?>
+            
             <ul class="nav navbar-nav navbar-right">
-                <li <?php if ($active == "comments.php") { echo "class='active'"; } ?>>
+                <li>
                     <a href="../index.php">View Your Site<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="dropdown">
@@ -102,10 +97,14 @@
                     </ul>
                 </li>
             </ul>
-            <?php
-            }
-            ?>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
+<?php
+
+    }
+else{
+    header("Location: ../index.php");
+}
+?>

@@ -24,6 +24,7 @@
 	</div>
 	<div class="form-group">
 		<input type="submit" class="btn btn-primary" name="login" value="Login">
+        <a class="btn btn-success" href="register.php">Register</a>
 	</div>
 </form>
 <a href="#">Forgot password</a>

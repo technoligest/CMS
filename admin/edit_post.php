@@ -1,4 +1,7 @@
 <?php
+
+require "../includes/functions.php";
+include "includes/header.php";
 $db_host = "localhost";
 $db_username = "ehab";
 $db_password = "ehab";
@@ -15,19 +18,7 @@ if(!isset($_GET['postId'])){
     die("Unknown post cannot be editted.");
 }
 
-$postId = $_GET['postId'];
-$sql = "SELECT * FROM posts WHERE post_id='$postId'";
-$result= $conn->query($sql);
-if($result==false){
-    die("Post with this id could not be found.");
-}
-
-require "../includes/functions.php";
-include "includes/header.php";
 $current_page = basename($_SERVER['PHP_SELF']);
-
-$row= $result->fetch_assoc();
-
 
 $updated=false;
 
@@ -50,7 +41,7 @@ if(isset($_POST['update_post'])){
 			 * This section of the code manages image uploads. As discussed in class,
 			 * we check if the file is of a specified type, and within the allowed file-size.
 			 */
-        $target_file = "images/" . $post_image;
+        $target_file = "../images/" . $post_image;
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mime = finfo_file($finfo, $post_image_temp);
 
@@ -65,6 +56,10 @@ if(isset($_POST['update_post'])){
                 if ($post_image_filesize < TWO_MEGA_BYTES) {
                     //Upload the image.
                     move_uploaded_file($post_image_temp, "$target_file");
+                    $post_image = "post_image='$post_image',";
+                }
+                else{
+                    $post_image = "";
                 }
                 break;
 
@@ -77,17 +72,25 @@ if(isset($_POST['update_post'])){
         $post_image = "";
     } 
 
-    $sql = "UPDATE posts SET post_cat_id='$post_category_id', post_title='$post_title', post_author='$post_author', post_image='$post_image', post_content='$post_content', post_tags='$post_tags', post_comments= '$post_comments', post_status= '$post_status' WHERE post_id='{$_GET['postId']}'";
-
+    $sql = "UPDATE posts SET post_cat_id='$post_category_id', post_title='$post_title', post_author='$post_author', $post_image post_content='$post_content', post_tags='$post_tags', post_comments= '$post_comments', post_status= '$post_status' WHERE post_id='{$_GET['postId']}'";
 
     $submit_post_result = $conn->query($sql);
 
     if (!$submit_post_result) {
         die ("Error creating post.<br>" . $conn->error . "<br>");
     }
-    header("Location: view_posts.php");
     $updated=true;
+
+
 }
+
+$postId = $_GET['postId'];
+$sql = "SELECT * FROM posts WHERE post_id='$postId'";
+$result= $conn->query($sql);
+if($result==false){
+    die("Post with this id could not be found.");
+}
+$row= $result->fetch_assoc();
 ?>
 
 
@@ -114,10 +117,19 @@ if(isset($_POST['update_post'])){
                     <label for="title">Post Title</label>
                     <input type="text" class="form-control" name="post_title"
                            value=" <?php echo $row['post_title']; ?>"
-
                            required>
                 </div>
             </div>
+
+            <div class="row col-lg-12">
+                <div class="form-group">
+                    <label for="post_author">Post Author</label>
+                    <input type="text" class="form-control" name="post_author"
+                           value=" <?php echo $row['post_author']; ?>"
+                           readonly>
+                </div>
+            </div>
+
 
             <div class="row col-lg-12">
                 <div class="form-group">
@@ -128,13 +140,6 @@ if(isset($_POST['update_post'])){
                         categories_into_dropdown_options();
                         ?>
                     </select>
-                </div>
-            </div>
-
-            <div class="row col-lg-12">
-                <div class="form-group">
-                    <label for="author">Post Author</label>
-                    <input type="text" class="form-control" name="post_author" value="<?php echo $row['post_author'];?>" required disabled>
                 </div>
 
                 <div class="form-group">
@@ -148,9 +153,13 @@ if(isset($_POST['update_post'])){
 
             <div class="row col-lg-12">
                 <div class="form-group">
-                    <label for="post_image">Change current image</label>
-                    <input type="file" value="<?php echo $row['post_image'];?>"name="post_image">
+                    <img class="img-responsive" src="../images/<?php echo $row['post_image']; ?>" alt="profile picture"  width="400px" height="200px">
                 </div>
+                <div class="form-group">
+                    <label for="post_image">Change current image</label>
+                    <input type="file" name="post_image">
+                </div>
+
 
                 <div class="form-group">
                     <label for="post_tags">Post Tags</label>
@@ -159,7 +168,7 @@ if(isset($_POST['update_post'])){
 
                 <div class="form-group">
                     <label for="post_content">Post Content</label>
-                    <textarea class="form-control" name="post_content" id="post_content" cols="30" rows="10" value="<?php echo $row['post_content'];?>"></textarea>
+                    <textarea class="form-control" name="post_content" id="post_content" cols="30" rows="10" ><?php echo $row['post_content']?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -169,4 +178,6 @@ if(isset($_POST['update_post'])){
         </div>
     </form>
 
-<?php include "includes/footer.php"; ?>
+<?php
+    include "includes/footer.php";
+?>

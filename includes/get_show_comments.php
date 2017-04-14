@@ -77,7 +77,7 @@
 					//Retrieve comments for this post				
 					$post_id_for_comment = $_GET['p_id'];
 
-					$sql = "SELECT * FROM comments WHERE comment_post_id = $post_id_for_comment";
+					$sql = "SELECT * FROM comments WHERE comment_post_id = $post_id_for_comment AND comment_status='approved'";
 					$retrieve_comment_query_result = $conn->query($sql);
 
 					if ($retrieve_comment_query_result->num_rows > 0) {
