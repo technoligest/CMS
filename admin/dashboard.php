@@ -9,7 +9,7 @@ if(!isset($_SESSION['role']) || !($_SESSION['role']==0 || $_SESSION['role']==1 )
 }
 ?>
 
-<div class="col-md-<?php if(isset($_SESSION['role']) && $_SESSION['role']!=0 ){echo "6";}else{echo "4";}?> col-sm-12 col-no-left-padding">
+<div class="col-md-<?php if(isset($_SESSION['role']) && $_SESSION['role']!=0 ){echo "6";}else{echo "4";}?> col-sm-12 ">
     <div class="panel panel-default">
         <div class="panel-heading">
             Recent Posts
@@ -35,7 +35,7 @@ if(!isset($_SESSION['role']) || !($_SESSION['role']==0 || $_SESSION['role']==1 )
         </div>
     </div>
 </div>
-<div class="col-md-<?php if(isset($_SESSION['role']) && $_SESSION['role']!=0 ){echo "6";}else{echo "4";}?> col-sm-12 col-no-right-padding">
+<div class="col-md-<?php if(isset($_SESSION['role']) && $_SESSION['role']!=0 ){echo "6";}else{echo "4";}?> col-sm-12 ">
     <div class="panel panel-default">
         <div class="panel-heading">
             Recent Comments
@@ -61,7 +61,7 @@ if(!isset($_SESSION['role']) || !($_SESSION['role']==0 || $_SESSION['role']==1 )
         </div>
     </div>
 </div>
-<div class="col-md-4 col-sm-12 col-no-right-padding <?php if(isset($_SESSION['role']) && $_SESSION['role']!=0){echo "hidden";}?>">
+<div class="col-md-4 col-sm-12  <?php if(isset($_SESSION['role']) && $_SESSION['role']!=0){echo "hidden";}?>">
     <div class="panel panel-default">
         <div class="panel-heading">
             Recent Users

@@ -19,7 +19,7 @@ require "../includes/submit_post.php";
     $current_page = basename($_SERVER['PHP_SELF']);
     ?>
 
-    <form action="<?php echo $current_page; ?>" method="post" enctype="multipart/form-data">
+    <form data-toggle="validator" role="form" action="<?php echo $current_page; ?>" method="post" enctype="multipart/form-data">
         <div class="col-lg-12">
             <div class="row col-lg-12">
                 <div class="form-group">

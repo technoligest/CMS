@@ -17,6 +17,8 @@ This is the add post page:
     <?php
     $current_page = basename($_SERVER['PHP_SELF']);
     ?>
+    
+
 
     <form data-toggle="validator" role="form" action="includes/add_user.php" method="post" enctype="multipart/form-data">
         <div class="col-lg-12">
@@ -77,6 +79,7 @@ This is the add post page:
 
 </div>
 
-<?php include "../includes/sidebar.php"; ?>
-
-<?php include "../includes/footer.php"; ?>
+<?php
+include "../includes/sidebar.php";
+include "../includes/footer.php";
+?>

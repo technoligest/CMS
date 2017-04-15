@@ -26,7 +26,7 @@ This script displays the sidebar on all pages:
                 </div>
                 <div class="form-group">
                     <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tags" required> Tags
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tags" required> Taaaags
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="categories"> Categories
@@ -35,13 +35,8 @@ This script displays the sidebar on all pages:
                         <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="author"> Authors
                     </label>
                 </div>
-                <div class="form-group">
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" name="search" value="Search">
-                    </div>
-                </div>
-
             </form>
+            
         </div>
     </div>	
 

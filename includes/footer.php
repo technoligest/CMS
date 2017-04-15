@@ -22,7 +22,9 @@
 			$conn->close();
 		?>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+		
 		<script src="js/bootstrap.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+  		<script src="js/validator.js"></script>
 	</body>
 </html>

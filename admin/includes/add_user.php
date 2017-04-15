@@ -21,7 +21,6 @@ if(isset($_POST['add_user'])) {
     }
 
 
-
     /*
 		 * Retrieve all the form values using the $_POST superglobal.
 		 */
@@ -41,18 +40,18 @@ if(isset($_POST['add_user'])) {
 
     if($user_image != "") { 
         /*
-			 * This section of the code manages image uploads. As discussed in class,
-			 * we check if the file is of a specified type, and within the allowed file-size.
-			 */
+         * This section of the code manages image uploads. As discussed in class,
+         * we check if the file is of a specified type, and within the allowed file-size.
+         */
         $target_file = "../../images/" . $user_image;
         echo $target_file;
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mime = finfo_file($finfo, $user_image_temp);
 
         /*
-			 * A list of MIME types are available here:
-			 * http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
-			 */
+         * A list of MIME types are available here:
+         * http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+         */
 
         switch ($mime) {
             case 'image/jpeg':

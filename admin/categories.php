@@ -57,7 +57,6 @@ This is the categories page:
             <!-- Edit/Update category -->
             <?php 
             if (isset($_GET['update_category'])) {
-                //		$updated_cat_id = $_GET['update_category'];
                 include '../includes/update_category.php';
             }
             ?>
@@ -77,5 +76,5 @@ This is the categories page:
 
 <?php
     include "../includes/sidebar.php";
-    include "../includes/footer.php";
+    include "includes/footer.php";
 ?>

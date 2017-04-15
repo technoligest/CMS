@@ -26,15 +26,12 @@
 			case '1':
 				$issue_reported = "Link Not Working";
 				break;
-			
 			case '2':
 				$issue_reported = "Page Not Found";
 				break;
-			
 			case '3':
 				$issue_reported = "Incorrect Script";
 				break;
-			
 			default:
 				$issue_reported = "Issue Not Selected";
 				break;
@@ -86,13 +83,15 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/bootstrap.css">
+		
+		<!--This is the stable release of bootstrap-->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/mystyles.css">
+		<link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
         
-        <link rel="stylesheet" href="../css/bootstrap.css">
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../css/mystyles.css">
+		<!--This is the alpha release of bootstrap 4-->
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
+        
 		<title>Home page</title>
 	</head>
 	<body>
@@ -110,7 +109,7 @@
 				<?php require_once "navigation.php"; ?>
 
 
-					<h1 class="display-1 myHeading">CMS2670
+					<h1 class="container  myHeading">CMS2670
 						<?php
 							switch (basename($_SERVER['PHP_SELF'])) {
 								case "posts.php":
