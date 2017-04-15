@@ -63,7 +63,7 @@ if(isset($_POST['register'])) {
     } 
     
     
-    $sql = "INSERT INTO users (user_firstname,user_lastname, user_email, user_address, user_phone, user_role, user_image,registeration_date)";
+    $sql = "INSERT INTO users (user_firstname,user_lastname, user_email, user_address, user_phone, user_role, user_image, registeration_date)";
     $sql .= "VALUES('$user_firstname','$user_lastname','$user_email','$user_address','$user_phone','$user_role', '$user_image',now())";
     $add_user_result = $conn->query($sql);
     

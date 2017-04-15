@@ -12,8 +12,8 @@
 		<div class="container">
 			<div class="row">
 				<footer class="footer myFooter">
-					<p><span class="text-muted">&copy; RVS 2017. INFX 2670: Introduction to Server Side Scripting</span>
-					<span class="text-muted pull-right"><a href="https://www.dal.ca/cs" target="_blank">Faculty of Computer Science</a>, <a href="https://www.dal.ca" target="_blank">Dalhousie University</a></span></p>
+					<p><span class="text-muted">&copy; SOLD Technologies</span>
+					<span class="text-muted pull-right">Made by <a href="http://www.yaser.ca" target="_blank">Yaser Alkayale </a>with &hearts;</span></p>
 				</footer>
 			</div>
 		</div>

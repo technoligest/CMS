@@ -90,7 +90,8 @@
     ?>
 </div>
 
-<?php include "includes/sidebar.php"; ?>
-
-<?php include "includes/footer.php"; ?>
+<?php 
+include "includes/sidebar.php";
+include "includes/footer.php";
+?>
 

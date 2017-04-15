@@ -1,45 +1,58 @@
-<!-- 
-/****************************************************************************************************
-R. V. Sampangi. 2017. Solution for Server Side Scripting Assignment 3. In INFX2670: Introduction to 
-Server Side Scripting, Faculty of Computer Science, Dalhousie University, NS, Canada.
-****************************************************************************************************/
 
-This is the add post page:
-- Includes several other PHP scripts to implement the overall functionality.
-- Allows users to create a new post.
--->
 <?php
 require "includes/functions.php";
 include "includes/header.php";
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
-<div class="col-md-8 col-sm-12 ">
+<div class="col-md-12 col-sm-12 ">
 
 <!--enctype is SUPER important for form input-->
-<form id="contact_form" class="form-horizontal" action="includes/register.php" method="post" enctype="multipart/form-data">
+<form id="contact_form" class="form-horizontal" action="includes/postadd.php" method="post" enctype="multipart/form-data">
         <fieldset>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label">First Name</label>
-                <div class="col-md-6 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="user_firstname" placeholder="First Name" class="form-control" type="text">
-                    </div>
-                </div>
-            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Ad Details</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">First Name</label>
+                            <div class="col-md-6 inputGroupContainer">
+                                <div class="input-group">
+                                    <label class="radio">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tags" required>
+                                        I am offering
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="categories">
+                                        I want
+                                    </label>
+                                 </div>
+                             </div>
+                        </div>
+                    
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">First Name</label>
+                            <div class="col-md-6 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input name="user_firstname" placeholder="First Name" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label">Last Name</label>
-                <div class="col-md-6 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input name="user_lastname" placeholder="Last Name" class="form-control" type="text">
-                    </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Last Name</label>
+                            <div class="col-md-6 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input name="user_lastname" placeholder="Last Name" class="form-control" type="text">
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
+            
 
             <!-- Text input-->
             <div class="form-group">
@@ -191,6 +204,5 @@ $current_page = basename($_SERVER['PHP_SELF']);
 </div>
 
 <?php
-include "includes/sidebar.php";
 include "includes/footer.php";
 ?>

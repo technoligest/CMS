@@ -8,8 +8,10 @@
 	- Includes several other PHP scripts to implement the overall functionality.
 	- Displays all posts, from a specific category, that are read from files in a loop.
 -->
-<?php require "includes/functions.php"; ?>
-<?php include "includes/header.php"; ?>
+<?php
+require "includes/functions.php";
+include "includes/header.php";
+?>
 
 		<div class="col-md-8 col-sm-12 col-no-left-padding">
 		<?php
@@ -73,6 +75,7 @@
 		?>
 		</div>
 	
-		<?php include "includes/sidebar.php"; ?>
-		
-<?php include "includes/footer.php"; ?>
+<?php
+include "includes/sidebar.php";
+include "includes/footer.php";
+?>

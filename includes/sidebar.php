@@ -11,7 +11,7 @@ This script displays the sidebar on all pages:
 - It shows the login form on all pages.
 - It shows the submit report form on all pages other than the report page itself.
 -->
-<div class="col-md-4 col-sm-12 col-no-right-padding">
+<div class="col-md-4 col-sm-12 ">
     <div class="panel panel-default">
 
         <div class="panel-heading">
@@ -26,7 +26,7 @@ This script displays the sidebar on all pages:
                 </div>
                 <div class="form-group">
                     <label class="radio-inline">
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tags" required> Taaaags
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="tags" required> Tags
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="categories"> Categories

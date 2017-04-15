@@ -40,7 +40,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['currentDate'] = $_COOKIE['cms_access'];
             }
             else{
-                $currentDate = 'never.';
+                 $_SESSION['currentDate'] = 'never.';
             }
         }
     }
