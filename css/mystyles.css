@@ -48,3 +48,8 @@ body {
 .bottom-margin {
 	margin-bottom: 1.8em;
 }
+
+#post_ad_form .btn-group .form-control-feedback {
+    top: 0;
+    right: -40px;
+}

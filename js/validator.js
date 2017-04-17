@@ -7,6 +7,7 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
+           
             user_firstname: {
                 validators: {
                     stringLength: {
@@ -184,5 +185,59 @@ $(document).ready(function () {
             console.log(result);
         }, 'json');
     });
-    
+    $('#post_ad_form').bootstrapValidator({
+         framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        // Since the Bootstrap Button hides the radio and checkbox
+        // We exclude the disabled elements only
+        excluded: ':disabled',
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+             forSaleBy: {
+                validators: {
+                    notEmpty: {
+                        message: 'The gender is required'
+                    }
+                }
+            },
+            ad_price: {
+                validators: {
+                    greaterThan: {
+                        value:0,
+                        message: 'Please enter a valid price.'
+                    },
+                    notEmpty: {
+                        message: 'Please enter a price.'
+                    }
+                }
+            }
+        }
+    })
+        .on('success.form.bv', function (e) {
+        $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+        $('#contact_form').data('bootstrapValidator').resetForm();
+
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        // Use Ajax to submit form data
+        $.post($form.attr('action'), $form.serialize(), function (result) {
+            console.log(result);
+        }, 'json');
+    });
 });
