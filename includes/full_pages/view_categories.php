@@ -2,13 +2,13 @@
     $current_page = basename($_SERVER['PHP_SELF']);
     $sql="SELECT * FROM category";
     $retrieve_category_result = $conn->query($sql); 
-    if ($retrieve_category_result->num_rows > 0) {
+    if ($retrieve_category_result && $retrieve_category_result->num_rows > 0) {
         $i=0;
-
+  
 ?>
 
 <div class="col-md-4 col-sm-12">
-    <?php
+    <?php    
         
         
         for($i=0; $i<$retrieve_category_result->num_rows/3; ++$i){

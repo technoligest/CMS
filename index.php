@@ -11,9 +11,6 @@ This is the home page:
 <?php
 require "includes/functions.php";
 include "includes/header.php";
-
-include "includes/view_categories.php";
-
-// include "includes/sidebar.php";
+include "includes/full_pages/view_categories.php";
 include "includes/footer.php";
 ?>

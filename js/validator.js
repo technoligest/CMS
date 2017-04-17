@@ -7,7 +7,7 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-           
+
             user_firstname: {
                 validators: {
                     stringLength: {
@@ -186,7 +186,7 @@ $(document).ready(function () {
         }, 'json');
     });
     $('#post_ad_form').bootstrapValidator({
-         framework: 'bootstrap',
+        framework: 'bootstrap',
         icon: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -202,10 +202,10 @@ $(document).ready(function () {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-             forSaleBy: {
-                validators: {
-                    notEmpty: {
-                        message: 'The gender is required'
+            ad_type:{
+                validators:{
+                    notEmpty:{
+                        message: 'Please choose are you selling or buying'
                     }
                 }
             },
@@ -217,6 +217,55 @@ $(document).ready(function () {
                     },
                     notEmpty: {
                         message: 'Please enter a price.'
+                    }
+                }
+            },
+            for_sale_by: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please choose if you are a business or individual'
+                    }
+                }
+            },
+            ad_title:{
+                validators:{
+                    notEmpty:{
+                        message: 'Plase input a title for your ad'
+                    }
+                }
+            },
+            ad_description:{
+                validators:{
+                    notEmpty:{
+                        message: 'Please input a description for your ad'
+                    }
+                }
+            },
+            ad_location:{
+                validators:{
+                    notEmpty:{
+                        message: 'Please select a city for you ad'
+                    }
+                }
+            },
+            ad_email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+            ad_phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    phone: {
+                        country: 'US',
+                        message: 'Please supply a vaild phone number with area code'
                     }
                 }
             }

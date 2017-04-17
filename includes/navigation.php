@@ -26,11 +26,11 @@ $active=basename($_SERVER['PHP_SELF']);
                 <li <?php if ($active == "index.php") { echo "class='active'"; } ?>>
                     <a href="index.php">Home<span class="sr-only">(current)</span></a>
                 </li>
-                
+
                 <li <?php if ($active == "report.php") { echo "class='active'"; } ?>>
                     <a href="report.php">Report Issues</a>
                 </li>
-                
+
                 <!-- List of categories -->
                 <?php
                 $category_menu1 = <<<_END
@@ -73,29 +73,36 @@ _END;
 
             </ul>
             <div class="navbar-right">
-            <a class="btn btn-success navbar-btn" href="post_ad.php">Button</a>
-            <div>
-            <?php
-            if(isset($_SESSION) && isset($_SESSION['username'])){
-            ?>
-            <ul class="nav navbar-nav navbar-right">
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <?php
-                            if($_SESSION['role']==0 ||$_SESSION['role']==1){
-                                echo "<li><a href=\"admin/dashboard.php\">Dashboard</a></li>";
-                            }
-                        ?>
-                        <li><a href="admin/profile.php">Profile</a></li>
-                        <li><a href="includes/logout.php">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <?php
-            }
+                <?php 
+                if($active!="post_ad.php"){
                 ?>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+                <a class="btn btn-success navbar-btn" href="post_ad.php">Post Ad</a>
+
+                <?php
+                }
+                ?>
+                <div>
+                    <?php
+                    if(isset($_SESSION) && isset($_SESSION['username'])){
+                    ?>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <?php
+                        if($_SESSION['role']==0 ||$_SESSION['role']==1){
+                            echo "<li><a href=\"admin/dashboard.php\">Dashboard</a></li>";
+                        }
+                                ?>
+                                <li><a href="admin/profile.php">Profile</a></li>
+                                <li><a href="includes/logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <?php
+                    }
+                    ?>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            </nav>

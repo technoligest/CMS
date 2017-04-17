@@ -23,7 +23,9 @@
     <p class="lead">
         by <a href="#"><?php echo $post_author; ?></a>
     </p>
-    <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date[0]; ?></p>
+    <p>
+        <span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date[0]; ?>
+    </p>
     <hr>
     <?php 
             //Show the post image only if one has been set.

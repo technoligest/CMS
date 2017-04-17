@@ -49,7 +49,16 @@ body {
 	margin-bottom: 1.8em;
 }
 
+/*This ensure that for radio buttons the checkmark is to the right rather than over them*/
 #post_ad_form .btn-group .form-control-feedback {
     top: 0;
     right: -40px;
+}
+.form-group textarea{
+    height:75px;
+}
+textarea {
+    overflow: auto;
+    resize: none;
+    vertical-align: top;
 }

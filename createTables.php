@@ -7,7 +7,7 @@ $dbName = 'cms';
 $conn = new mysqli($serverName, $userName, $password, $dbName);
 
 if ($conn->connect_error) {
-  die('connection error '. $conn->connect_error);
+    die('connection error '. $conn->connect_error);
 }
 // Creating the locations table
 $sql = "CREATE TABLE IF NOT EXISTS locations (
@@ -16,9 +16,9 @@ $sql = "CREATE TABLE IF NOT EXISTS locations (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Locations table succesfully created\n";
+    echo "Locations table succesfully created\n";
 } else {
-  echo "ERROR creating locations table\n";
+    echo "ERROR creating locations table\n";
 }
 
 //creating the category table
@@ -28,9 +28,9 @@ $sql = "CREATE TABLE IF NOT EXISTS category (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Category table succesfully created\n";
+    echo "Category table succesfully created\n";
 } else {
-  echo "ERROR creating category table\n";
+    echo "ERROR creating category table\n";
 }
 
 //creating the category sections table
@@ -42,9 +42,9 @@ $sql = "CREATE TABLE IF NOT EXISTS category_sections (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Category sections table succesfully created\n";
+    echo "Category sections table succesfully created\n";
 } else {
-  echo "ERROR creating category sections table\n";
+    echo "ERROR creating category sections table\n";
 }
 
 //creating the users and login tables
@@ -63,9 +63,9 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Users table successfully created\n";
+    echo "Users table successfully created\n";
 } else {
-  echo "ERROR creating Users table\n";
+    echo "ERROR creating Users table\n";
 }
 
 $sql = "CREATE TABLE IF NOT EXISTS login (
@@ -78,9 +78,9 @@ $sql = "CREATE TABLE IF NOT EXISTS login (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "login table successfully created\n";
+    echo "login table successfully created\n";
 } else {
-  echo "ERROR creating login table\n";
+    echo "ERROR creating login table\n";
 }
 
 
@@ -101,9 +101,9 @@ $sql = "CREATE TABLE IF NOT EXISTS posts (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Posts table successfully created\n";
+    echo "Posts table successfully created\n";
 } else {
-  echo "ERROR creating Posts table\n";
+    echo "ERROR creating Posts table\n";
 }
 
 
@@ -128,14 +128,15 @@ $sql = "CREATE TABLE IF NOT EXISTS ads (
   FOREIGN KEY (ad_location_id) references locations(location_id),
   FOREIGN KEY (ad_user_id) references users(user_id),
   FOREIGN KEY (ad_cat_id) references category(user_id),
-  FOREIGN KEY (ad_user_id) references users(user_id),
+  FOREIGN KEY (ad_user_id) references users(user_id)
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Ads table successfully created\n";
+    echo "Ads table successfully created\n";
 } else {
-  echo "ERROR creating Ads table\n";
+    echo "ERROR creating Ads table\n";
 }
+echo "<br>"."<br>".$sql."<br>"."<br>";
 
 
 
@@ -157,9 +158,9 @@ $sql = "CREATE TABLE IF NOT EXISTS comments (
 );";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Comments table successfully created\n";
+    echo "Comments table successfully created\n";
 } else {
-  echo "ERROR creating Comments table\n";
+    echo "ERROR creating Comments table\n";
 }
 
 
