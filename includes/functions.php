@@ -1,8 +1,8 @@
 <?php
-	/****************************************************************************************************
+/****************************************************************************************************
 	R. V. Sampangi. 2017. Solution for Server Side Scripting Assignment 3. In INFX2670: Introduction to 
 	Server Side Scripting, Faculty of Computer Science, Dalhousie University, NS, Canada.
-	
+
 	This is the functions script, some functions might be necessary on all pages.
 	****************************************************************************************************/
 
@@ -16,10 +16,10 @@
  * - Returns sanitized data ($data).
  */
 function test_form_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 
@@ -32,12 +32,12 @@ function test_form_input($data) {
  */
 function create_paragraphs_from_DBtext($content) {
 
-	$content = nl2br($content, false);
+    $content = nl2br($content, false);
 
-	$content = str_replace( '<br><br>', '</p><p>', $content );
-	$content = str_replace( '<br>', '</p><p>', $content );
+    $content = str_replace( '<br><br>', '</p><p>', $content );
+    $content = str_replace( '<br>', '</p><p>', $content );
 
-	return $content;
+    return $content;
 }
 
 /*
@@ -52,36 +52,36 @@ function create_paragraphs_from_DBtext($content) {
  *          TO DISPLAY POSTS.
  */
 function read_post($post_file, $current_page) {
-	$line_number = 0;
+    $line_number = 0;
 
-	while(!feof($post_file)) {
-		$line = fgets($post_file);
-		$line = trim($line);
+    while(!feof($post_file)) {
+        $line = fgets($post_file);
+        $line = trim($line);
 
-		if ($line_number == 0) {
-			echo "<h2 class='display-2'><a href='posts.php'>$line</a></h2>";
-		}
-		elseif ($line_number == 2) {
-			echo "<p><a href='#'>$line</a></p>";
-		}
-		elseif ($line_number == 3) {
-			if ($current_page == "index.php") {
-				$date_time = explode(",", $line);
-				echo "<p class='bottom-margin'>$date_time[0]</p>";
-			}
-			elseif ($current_page == "posts.php") {
-				echo "<p>$line</p>";
-				echo "<hr>";
-			}
-		}
-		elseif ($line_number > 4) {
-			if ($line != "") {
-				echo "<p>$line</p>";
-			}
-		}
+        if ($line_number == 0) {
+            echo "<h2 class='display-2'><a href='posts.php'>$line</a></h2>";
+        }
+        elseif ($line_number == 2) {
+            echo "<p><a href='#'>$line</a></p>";
+        }
+        elseif ($line_number == 3) {
+            if ($current_page == "index.php") {
+                $date_time = explode(",", $line);
+                echo "<p class='bottom-margin'>$date_time[0]</p>";
+            }
+            elseif ($current_page == "posts.php") {
+                echo "<p>$line</p>";
+                echo "<hr>";
+            }
+        }
+        elseif ($line_number > 4) {
+            if ($line != "") {
+                echo "<p>$line</p>";
+            }
+        }
 
-		$line_number++;
-	}
+        ++$line_number;
+    }
 }
 
 
@@ -93,12 +93,12 @@ function read_post($post_file, $current_page) {
  *   wherever the function is called.
  */
 function read_all_categories() {
-	global $conn;
+    global $conn;
 
-	$sql = "SELECT * FROM category";
-	$categories_query_result = $conn->query($sql);
+    $sql = "SELECT * FROM category";
+    $categories_query_result = $conn->query($sql);
 
-	$category_display_table_header = <<<_END
+    $category_display_table_header = <<<_END
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -109,32 +109,32 @@ function read_all_categories() {
 				<tbody>
 _END;
 
-	$category_display_table_footer = <<<_END
+    $category_display_table_footer = <<<_END
 				</tbody>
 			</table>
 _END;
 
-	echo $category_display_table_header;
+    echo $category_display_table_header;
 
-	if ($categories_query_result->num_rows > 0) {
-		while ($row = $categories_query_result->fetch_assoc()) {
-			$cat_id = $row['cat_id'];
-			$cat_title = $row['cat_title'];
-			echo "<tr>";
-			echo "<td>$cat_id</td>";
-			echo "<td>$cat_title</td>";
-			echo "<td class='text-right'><a class='btn btn-info' href='categories.php?update_category=$cat_id'>UPDATE</a>";
-			echo "&nbsp;<a class='btn btn-danger' href='categories.php?delete_category=$cat_id'>DELETE</a></td>";
-			echo "</tr>";
-		}
-	}
-	else {
-		echo "<tr>";
-		echo "<td colspan='3'>No categories exist yet.</td>";
-		echo "</tr>";
-	}
+    if ($categories_query_result->num_rows > 0) {
+        while ($row = $categories_query_result->fetch_assoc()) {
+            $cat_id = $row['cat_id'];
+            $cat_title = $row['cat_title'];
+            echo "<tr>";
+            echo "<td>$cat_id</td>";
+            echo "<td>$cat_title</td>";
+            echo "<td class='text-right'><a class='btn btn-info' href='categories.php?update_category=$cat_id'>UPDATE</a>";
+            echo "&nbsp;<a class='btn btn-danger' href='categories.php?delete_category=$cat_id'>DELETE</a></td>";
+            echo "</tr>";
+        }
+    }
+    else {
+        echo "<tr>";
+        echo "<td colspan='3'>No categories exist yet.</td>";
+        echo "</tr>";
+    }
 
-	echo $category_display_table_footer;
+    echo $category_display_table_footer;
 
 }
 
@@ -148,22 +148,22 @@ _END;
  *   to create drop-down selection options in a form.
  */
 function categories_into_dropdown_options() {
-	global $conn;
+    global $conn;
 
-	$sql = "SELECT * FROM category";
-	$categories_query_result = $conn->query($sql);
+    $sql = "SELECT * FROM category";
+    $categories_query_result = $conn->query($sql);
 
-	if ($categories_query_result->num_rows > 0) {
-		while ($row = $categories_query_result->fetch_assoc()) {
-			$cat_id = $row['cat_id'];
-			$cat_title = $row['cat_title'];
+    if ($categories_query_result->num_rows > 0) {
+        while ($row = $categories_query_result->fetch_assoc()) {
+            $cat_id = $row['cat_id'];
+            $cat_title = $row['cat_title'];
 
-			echo "<option value='$cat_id'>$cat_title</option>";
-		}
-	}
-	else {
-		echo "No categories exist yet.";
-	}
+            echo "<option value='$cat_id'>$cat_title</option>";
+        }
+    }
+    else {
+        echo "No categories exist yet.";
+    }
 }
 
 
@@ -175,22 +175,22 @@ function categories_into_dropdown_options() {
  * - Does not return anything.
  */
 function insert_category($category_title) {
-	global $conn;
+    global $conn;
 
-	$category_title = test_form_input($category_title);
+    $category_title = test_form_input($category_title);
 
-	if (empty($category_title)) {
-		echo "<p></em>Category title cannot be empty!</em></p>";
-	}
-	else {
-		$sql = "INSERT INTO category(cat_title) VALUES('$category_title')";
+    if (empty($category_title)) {
+        echo "<p></em>Category title cannot be empty!</em></p>";
+    }
+    else {
+        $sql = "INSERT INTO category(cat_title) VALUES('$category_title')";
 
-		$result_create_category = $conn->query($sql);
+        $result_create_category = $conn->query($sql);
 
-		if (!$result_create_category) {
-			die("<p><em>Sorry, could not create category!</em></p>" . $conn->error);
-		}
-	}
+        if (!$result_create_category) {
+            die("<p><em>Sorry, could not create category!</em></p>" . $conn->error);
+        }
+    }
 }
 
 
@@ -202,20 +202,40 @@ function insert_category($category_title) {
  * - @return: TRUE, if operation was successful; FALSE, otherwise.
  */
 function delete_category($category_id) {
-	global $conn;
+    global $conn;
 
-	$sql = "DELETE FROM category WHERE cat_id = $category_id";
+    $sql = "DELETE FROM category WHERE cat_id = $category_id";
 
-	$result_delete_category = $conn->query($sql);
+    $result_delete_category = $conn->query($sql);
 
-	if (!$result_delete_category) {
-		echo "<p><em>Sorry, the category could not be deleted!</em></p>" . $conn->error;
-		return FALSE;
-	}
-	else {
-		return TRUE;
-	}
+    if (!$result_delete_category) {
+        echo "<p><em>Sorry, the category could not be deleted!</em></p>" . $conn->error;
+        return FALSE;
+    }
+    else {
+        return TRUE;
+    }
 }
 
+
+/*
+ *Returns a unique picture id that allows us to store the images for a post
+ *
+ *
+ */
+function get_new_picture_id(){
+    while(true){
+        $seed = str_split('abcdefghijklmnopqrstuvwxyz'
+                          .'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                          .'0123456789!@#$%^&*()'); // and any other characters
+        shuffle($seed); // probably optional since array_is randomized; this may be redundant
+        $rand = '';
+        foreach (array_rand($seed, 10) as $k) $rand .= $seed[$k];
+        $result = $conn->query("SELECT ad_picture_id FROM ads WHERE ad_picture_id={$rand}");
+        if(!$result || $result->num_rows<1){
+            return $rand;
+        }
+    }
+}
 
 ?>

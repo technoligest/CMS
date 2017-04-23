@@ -107,28 +107,28 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-
-
-
-
-
 $sql = "CREATE TABLE IF NOT EXISTS ads (
-  ad_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  ad_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ad_type INT NOT NULL,
   ad_title VARCHAR(255) NOT NULL,
   ad_description TEXT NOT NULL,
-  ad_location_id VARCHAR(255) NOT NULL,
+
   ad_postal_code VARCHAR(255) NOT NULL,
   ad_address VARCHAR(255) NOT NULL,
   ad_price VARCHAR(20) NOT NULL,
   ad_for_sale_by VARCHAR(20) NOT NULL,
-  ad_user_id VARCHAR(255) NOT NULL,
+
   ad_picture_id VARCHAR(255) NOT NULL,
+
+  ad_location_id INT(4) NOT NULL,
+  ad_user_id INT(4) NOT NULL,
   ad_cat_id INT(4) NOT NULL,
+  ad_cat_section_id INT(4) NOT NULL,
+
   FOREIGN KEY (ad_location_id) references locations(location_id),
   FOREIGN KEY (ad_user_id) references users(user_id),
-  FOREIGN KEY (ad_cat_id) references category(user_id),
-  FOREIGN KEY (ad_user_id) references users(user_id)
+  FOREIGN KEY (ad_cat_id) references category(cat_id),
+  FOREIGN KEY (ad_cat_section_id) references category_sections(cat_section_id)
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -137,11 +137,6 @@ if ($conn->query($sql) === TRUE) {
     echo "ERROR creating Ads table\n";
 }
 echo "<br>"."<br>".$sql."<br>"."<br>";
-
-
-
-
-
 
 
 

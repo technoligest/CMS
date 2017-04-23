@@ -22,56 +22,17 @@ $active=basename($_SERVER['PHP_SELF']);
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
-                <li <?php if ($active == "index.php") { echo "class='active'"; } ?>>
-                    <a href="index.php">Home<span class="sr-only">(current)</span></a>
-                </li>
-
                 <li <?php if ($active == "report.php") { echo "class='active'"; } ?>>
                     <a href="report.php">Report Issues</a>
                 </li>
-
-                <!-- List of categories -->
-                <?php
-                $category_menu1 = <<<_END
-								<ul class="nav navbar-nav">
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Categories
-										<b class="caret"></b></a>
-										<ul class="dropdown-menu">
-_END;
-
-                $category_menu2 = <<<_END
-										</ul>
-									</li>
-								</ul>
-_END;
-
-                $sql = "SELECT * FROM category";
-
-                $select_categories_result = $conn->query($sql);
-
-                if ($select_categories_result->num_rows > 0) {
-
-                    echo $category_menu1;
-
-                    while ($row = $select_categories_result->fetch_assoc()) {
-                        $cat_id = $row['cat_id'];
-                        $cat_title = $row['cat_title'];
-                        if(basename(getcwd()) == "admin"){  
-                            echo "<li><a href='../category_posts.php?cat_id=$cat_id'>$cat_title</a></li>";
-                        }
-                        else{
-                            echo "<li><a href='category_posts.php?cat_id=$cat_id'>$cat_title</a></li>";
-                        }
-                    }
-
-                    echo $category_menu2;
-                }
-                ?>
-
-
             </ul>
+            <form class="navbar-form navbar-left" action="search.php" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="general_search" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
             <div class="navbar-right">
                 <?php 
                 if($active!="post_ad.php"){
@@ -105,4 +66,6 @@ _END;
                     ?>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
-            </nav>
+        </div>
+    </div>
+</nav>
