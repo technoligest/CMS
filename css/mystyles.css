@@ -7,6 +7,9 @@
 	Custom styles for this CMS assignment
 */
 
+h3,h4{
+    margin-top:10px;
+}
 body {
 	padding-top: 50px;
 }

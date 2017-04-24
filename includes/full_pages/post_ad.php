@@ -93,7 +93,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><b>2</b> Upload Images</div>
                 <div class="panel-body">
-
+                    <input type="file" name="files">
                 </div><!--Closing panel body-->
             </div><!--closing the panel 2-->
             <div class="panel panel-default">

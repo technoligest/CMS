@@ -27,29 +27,40 @@ if(0){
 }
 else{
 ?>
-
-<div class="col-md-12">
-    <?php
-    while($row=$result->fetch_assoc()){
-
-    }
-    ?>
-    <div class="row">
-        <div class="col-md-3 col-sm-2"><img src="http://placehold.it/200x150" alt="Ad image"  class="img-responsive"></div>
-        <div class="col-md-9 col-sm-10">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 style="float: left">
+<div class="container">
+    <div class="col-md-2 col-sm-12 col-xs-12"></div>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <?php
+    //    while($row=$result->fetch_assoc()){
+    //
+    //    }
+        ?>
+        <div class="row">
+            <div class="col-md-3 col-sm-2 col-xs-12"><img src="http://placehold.it/200x150" alt="Ad image"  class="img-responsive center-block">
+            </div>
+            <div class="row col-md-9 col-sm-10 col-xs-12">
+                <div class="col-md-10 col-sm-9 col-xs-9">
+                    <h3>
                         Title
                     </h3>
-                    <h3 style="float: righ">
-                        Price
+                    <p> YES this is the best ever!!! fljdsafkl;d dfasjkhlkdafshkf afdsjlkhjfalks fdasjklfdas fdsalhljkfasd mjlkhfads m,jklfadhsm, fadhlvkcnczvxjlkewq fasdjlkn,mvck;ew qwroadsvijoj</p>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <h3>
+                        Priceee
                     </h3>
                 </div>
-                <p class="text-right">Right aligned text.</p>
-                <p> YES this is the best ever!!!</p>
+            </div>
+            <div class="row col-md-9 col-sm-10 col-xs-12">
+                <div class="col-md-10 col-sm-9 col-xs-9">
+                    <p> Metadata</p>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <p> Metadata</p>
+                </div>
             </div>
         </div>
+
     </div>
 </div>
 
