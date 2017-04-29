@@ -109,7 +109,7 @@
 				<?php require_once "navigation.php"; ?>
 
 
-					<h1 class="container  myHeading">CMS2670
+					<h1 class="container  myHeading">Welcome!
 						<?php
 							switch (basename($_SERVER['PHP_SELF'])) {
 								case "posts.php":
@@ -124,6 +124,9 @@
 								case "categories.php":
 									echo "<small>&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;VIEW/EDIT CATEGORIES</small>";
 									break;
+                                case "choose_category.php":
+                                    echo "<small> Please choose a category</small>";
+                                    break;
 								default:
 									echo "";
 									break;

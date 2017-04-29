@@ -131,7 +131,7 @@
                     </div>
                 </div><!--Closing panel body-->
             </div><!--closing the panel 4-->
-            
+            <input type="hidden" name="ad_cat_id" value="" type="text">
         </fieldset>
     </form>
 </div>

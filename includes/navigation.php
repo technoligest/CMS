@@ -7,6 +7,8 @@
 	****************************************************************************************************/
 $active=basename($_SERVER['PHP_SELF']);
 ?>
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -34,14 +36,6 @@ $active=basename($_SERVER['PHP_SELF']);
             </form>
 
             <div class="navbar-right">
-                <?php 
-                if($active!="post_ad.php"){
-                ?>
-                <a class="btn btn-success navbar-btn" href="post_ad.php">Post Ad</a>
-
-                <?php
-                }
-                ?>
                 <div>
                     <?php
                     if(isset($_SESSION) && isset($_SESSION['username'])){
@@ -65,7 +59,25 @@ $active=basename($_SERVER['PHP_SELF']);
                     }
                     ?>
                 </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                
+                   <ul class="nav navbar-nav">
+                <li>
+                    <a href="login.php">Login</a>
+                </li>
+                       <li>
+                    <a href="signup.php">Signup</a>
+                </li>
+            </ul>
+                
+                <?php 
+                if($active!="post_ad.php" && $active!="choose_category.php"){
+                ?>
+                <a class="navbar-nav btn btn-success navbar-btn" href="choose_category.php">Post Ad</a>
+
+                <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
 </nav>
