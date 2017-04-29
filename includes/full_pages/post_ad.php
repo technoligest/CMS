@@ -131,7 +131,8 @@
                     </div>
                 </div><!--Closing panel body-->
             </div><!--closing the panel 4-->
-            <input type="hidden" name="ad_cat_id" value="" type="text">
+            <input type="hidden" name="ad_cat_id" value="<?php echo test_form_input($_GET['cat_id']);?>" type="text">
+            <input type="hidden" name="ad_cat_section_id" value="<?php echo test_form_input($_GET['cat_section_id']);?>" type="text">
         </fieldset>
     </form>
 </div>

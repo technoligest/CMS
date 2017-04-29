@@ -85,49 +85,31 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-
-$sql = "CREATE TABLE IF NOT EXISTS posts (
-  post_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  post_cat_id INT(4) NOT NULL,
-  post_title VARCHAR(255) NOT NULL,
-  post_author VARCHAR(255) NOT NULL,
-  post_date DATETIME NOT NULL, 
-  post_image TEXT,
-  post_content TEXT,
-  post_tags VARCHAR(255),
-  post_comments INT(4) NOT NULL DEFAULT 0,
-  post_status VARCHAR(255) NOT NULL,
-  FOREIGN KEY (post_cat_id) REFERENCES category(cat_id)
-);";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Posts table successfully created\n";
-} else {
-    echo "ERROR creating Posts table\n";
-}
-
-
 $sql = "CREATE TABLE IF NOT EXISTS ads (
   ad_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ad_type INT NOT NULL,
+  ad_type VARCHAR(255) NOT NULL,
   ad_price INT(20) NOT NULL,
   ad_for_sale_by VARCHAR(20) NOT NULL,
-  
+
   ad_title VARCHAR(255) NOT NULL,
   ad_description TEXT NOT NULL,
   ad_location_id INT(4) NOT NULL,
-  
-  
-  ad_user_email INT(4) NOT NULL,
-  ad_user_phone 
+
+
+  ad_user_email VARCHAR(255) NOT NULL,
+  ad_user_phone VARCHAR(15) NOT NULL,
   ad_cat_id INT(4) NOT NULL,
   ad_cat_section_id INT(4) NOT NULL,
-  
+
+  ad_approve_status VARCHAR(10) NOT NULL,
+  ad_status VARCHAR(10) NOT NULL,
+
   FOREIGN KEY (ad_location_id) references locations(location_id),
   FOREIGN KEY (ad_cat_id) references category(cat_id),
   FOREIGN KEY (ad_cat_section_id) references category_sections(cat_section_id)
 );";
-
+//ad status is to know if the ad has been activated or not.
+//ad approve status tells us if it has been approved or not
 if ($conn->query($sql) === TRUE) {
     echo "Ads table successfully created\n";
 } else {
@@ -156,17 +138,16 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $sql = "CREATE TABLE IF NOT EXISTS pictures (
-  picture_user_id INT NOT NULL,
+  pic_ad_id INT NOT NULL,
   picture_name VARCHAR(255) NOT NULL,
-  FOREIGN KEY (picture_user_id) REFERENCES users(user_id)
+  FOREIGN KEY (pic_ad_id) REFERENCES ads(ad_id)
 );";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Comments table successfully created\n";
+    echo "Pictures table successfully created\n";
 } else {
-    echo "ERROR creating Comments table\n";
+    echo "ERROR creating Pictures table\n";
 }
-
 
 
 ?>
