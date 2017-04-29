@@ -21,22 +21,32 @@
 		<?php
 			$conn->close();
 		?>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 		
-		<script src="js/bootstrap.min.js"></script>
-  		<script src="js/validator.js"></script>
 
-
-<script src="//code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
         <!-- styles -->
 		<link href="filer-uploader/css/jquery.fileuploader.css" media="all" rel="stylesheet">
 		<link href="filer-uploader/css/jquery.fileuploader-theme-dragdrop.css" media="all" rel="stylesheet">
 		
 		<!-- js -->
 		<script src="//code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
-		<script src="filer-uploader/js/jquery.fileuploader.min.js" type="text/javascript"></script>
-		<script src="filer-uploader/js/custom.js" type="text/javascript"></script>
+		
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+
+
+
+<script src="filer-uploader/js/jquery.fileuploader.min.js" type="text/javascript"></script>
+		
+		<script src="js/bootstrap.min.js"></script>
+  		<script src="js/cms_scripts.php"></script>
+
 
 
 	</body>

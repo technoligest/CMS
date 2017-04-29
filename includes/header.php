@@ -7,7 +7,7 @@
 	This is the page header to be included on all pages.
 -->
 <?php
-    
+    require_once("includes/functions.php");
 	/* Process data submitted by report issues form */
 	if (isset($_POST['reportIssues'])) {
 		$preferred_name = test_form_input($_POST['preferredname']);

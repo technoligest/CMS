@@ -38,8 +38,8 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['js/validator.js'],
-        dest: 'dist/validator.js'
+        src: ['js/cms_scripts.php'],
+        dest: 'dist/cms_scripts.php'
       }
     },
 
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
         report: 'min'
       },
       min: {
-        src: ['js/validator.js'],
+        src: ['js/cms_scripts.php'],
         dest: 'dist/validator.min.js'
       }
     },

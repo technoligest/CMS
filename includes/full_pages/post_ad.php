@@ -1,5 +1,4 @@
 <div class="col-md-12 col-sm-12">
-
     <!--enctype is SUPER important for form input-->
     <form id="post_ad_form" class="form-horizontal" action="includes/form_submission/post_ad_submission.php" method="post" enctype="multipart/form-data" data-toggle="validator">
         <fieldset>
@@ -132,6 +131,7 @@
                     </div>
                 </div><!--Closing panel body-->
             </div><!--closing the panel 4-->
+            
         </fieldset>
     </form>
 </div>

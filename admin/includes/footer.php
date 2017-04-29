@@ -31,7 +31,7 @@ $conn->close();
 
 <!--Validator Scripts-->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<script src="../js/validator.js"></script>
+<script src="../js/cms_scripts.php"></script>
 <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
