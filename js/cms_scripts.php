@@ -1,6 +1,6 @@
 <?php header("Content-type: application/javascript"); ?>
 
-$(document).ready(function () {
+    $(document).ready(function () {
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -148,10 +148,6 @@ $(document).ready(function () {
                         regexp: '^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[$@$!%*?&])(?=.*?[0-9]).{8,}$',
                         message: 'Make sure password includes lowercase, uppercase, number and special character'
                     },
-                    identical:{
-                        field: 'user_password',
-                        message: 'Passwords don\'t match'
-                    },
                     notEmpty:{
                         message: 'Please input a password'
                     }
@@ -290,19 +286,123 @@ $(document).ready(function () {
             console.log(result);
         }, 'json');
     });
-    
+    $('#login_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                    emailAddress: {
+                        message: 'Please supply a valid email'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your password'
+                    }
+                }
+            }
+        }
+    })
+        .on('success.form.bv', function (e) {
+        $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+        $('#contact_form').data('bootstrapValidator').resetForm();
+
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        // Use Ajax to submit form data
+        $.post($form.attr('action'), $form.serialize(), function (result) {
+            console.log(result);
+        }, 'json');
+    });
+
+    $('#signup_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                    emailAddress: {
+                        message: 'Please supply a valid email'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    stringLength:{
+                        min:8,
+                        message:'Please input a password that\'s at least 8 characters'
+                    },
+                    regexp:{
+                        regexp: '^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[$@$!%*?&])(?=.*?[0-9]).{8,}$',
+                        message: 'Make sure password includes lowercase, uppercase, number and special character'
+                    },
+                    notEmpty:{
+                        message: 'Please input a password'
+                    }
+                }
+            },
+            password2: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your password'
+                    },
+                    identical:{
+                        field: 'password',
+                        message: 'Passwords don\'t match'
+                    }
+                }
+            }
+        }
+    })
+        .on('success.form.bv', function (e) {
+        $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+        $('#contact_form').data('bootstrapValidator').resetForm();
+
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+
+        // Use Ajax to submit form data
+        $.post($form.attr('action'), $form.serialize(), function (result) {
+            console.log(result);
+        }, 'json');
+    });
+
     // enable fileuploader plugin
-	$('input[name="files"]').fileuploader({
+    $('input[name="files"]').fileuploader({
         changeInput: '<div class="fileuploader-input">' +
-					      '<div class="fileuploader-input-inner">' +
-						      '<img src="filer-uploader/images/fileuploader-dragdrop-icon.png">' +
-							  '<h3 class="fileuploader-input-caption"><span>Drag and drop files here</span></h3>' +
-							  '<p>or</p>' +
-							  '<div class="fileuploader-input-button"><span>Browse Files</span></div>' +
-						  '</div>' +
-					  '</div>',
+        '<div class="fileuploader-input-inner">' +
+        '<img src="filer-uploader/images/fileuploader-dragdrop-icon.png">' +
+        '<h3 class="fileuploader-input-caption"><span>Drag and drop files here</span></h3>' +
+        '<p>or</p>' +
+        '<div class="fileuploader-input-button"><span>Browse Files</span></div>' +
+        '</div>' +
+        '</div>',
         theme: 'dragdrop',
-		upload: {
+        upload: {
             url: 'filer-uploader/php/upload_pictures.php',
             data: null,
             type: 'POST',
@@ -312,46 +412,46 @@ $(document).ready(function () {
             beforeSend: null,
             onSuccess: function(result, item) {
                 var data = JSON.parse(result);
-            
-				// if success
+
+                // if success
                 if (data.isSuccess && data.files[0]) {
                     item.name = data.files[0].name;
                 }
-				
-				// if warnings
-				if (data.hasWarnings) {
-					for (var warning in data.warnings) {
-						alert(data.warnings);
-					}
-					
-					item.html.removeClass('upload-successful').addClass('upload-failed');
-					// go out from success function by calling onError function
-					// in this case we have a animation there
-					// you can also response in PHP with 404
-					return this.onError ? this.onError(item) : null;
-				}
-                
+
+                // if warnings
+                if (data.hasWarnings) {
+                    for (var warning in data.warnings) {
+                        alert(data.warnings);
+                    }
+
+                    item.html.removeClass('upload-successful').addClass('upload-failed');
+                    // go out from success function by calling onError function
+                    // in this case we have a animation there
+                    // you can also response in PHP with 404
+                    return this.onError ? this.onError(item) : null;
+                }
+
                 item.html.find('.column-actions').append('<a class="fileuploader-action fileuploader-action-remove fileuploader-action-success" title="Remove"><i></i></a>');
                 setTimeout(function() {
                     item.html.find('.progress-bar2').fadeOut(400);
                 }, 400);
             },
             onError: function(item) {
-				var progressBar = item.html.find('.progress-bar2');
-				
-				if(progressBar.length > 0) {
-					progressBar.find('span').html(0 + "%");
+                var progressBar = item.html.find('.progress-bar2');
+
+                if(progressBar.length > 0) {
+                    progressBar.find('span').html(0 + "%");
                     progressBar.find('.fileuploader-progressbar .bar').width(0 + "%");
-					item.html.find('.progress-bar2').fadeOut(400);
-				}
-                
+                    item.html.find('.progress-bar2').fadeOut(400);
+                }
+
                 item.upload.status != 'cancelled' && item.html.find('.fileuploader-action-retry').length == 0 ? item.html.find('.column-actions').prepend(
                     '<a class="fileuploader-action fileuploader-action-retry" title="Retry"><i></i></a>'
                 ) : null;
             },
             onProgress: function(data, item) {
                 var progressBar = item.html.find('.progress-bar2');
-				
+
                 if(progressBar.length > 0) {
                     progressBar.show();
                     progressBar.find('span').html(data.percentage + "%");
@@ -360,15 +460,15 @@ $(document).ready(function () {
             },
             onComplete: null,
         },
-		onRemove: function(item) {
-			$.post('filer-uploader/php/remove_pictures.php', {
-				file: item.name
-			});
-		},
-		captions: {
+        onRemove: function(item) {
+            $.post('filer-uploader/php/remove_pictures.php', {
+                file: item.name
+            });
+        },
+        captions: {
             feedback: 'Drag and drop files here',
             feedback2: 'Drag and drop files here',
             drop: 'Drag and drop files here'
         },
-	});
+    });
 });

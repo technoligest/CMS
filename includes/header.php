@@ -99,7 +99,7 @@ Available: http://getbootstrap.com/components/#nav
                     <?php require_once "navigation.php"; ?>
 
 
-                    <h1 class="container  myHeading">Welcome!
+                    <h1 class="container  myHeading">
                         <?php
                         switch (basename($_SERVER['PHP_SELF'])) {
                             case "posts.php":
@@ -115,7 +115,7 @@ Available: http://getbootstrap.com/components/#nav
                                 echo "<small>&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;VIEW/EDIT CATEGORIES</small>";
                                 break;
                             case "choose_category.php":
-                                echo "<small> Please choose a category</small>";
+                                echo "Choose a category<small> Please select a category</small>";
                                 break;
                             default:
                                 echo "";

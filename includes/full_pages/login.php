@@ -1,11 +1,23 @@
 
-
 <div class="col-md-8 col-sm-12">
     <form id="login_form" class="form-horizontal" action="includes/form_submission/login.php" method="post" enctype="multipart/form-data" data-toggle="validator">
         <fieldset>
             <div class="panel panel-default">
                 <div class="panel-heading">Login Here</div>
                 <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class=" col-md-6 inputGroupContainer ">
+                            <?php
+                            if(isset($_GET['accountExists'])&& $_GET['accountExists']==true){
+
+                            ?>
+                            <small class="help-block" style="color:#a94442">Account already exists. Please sign in.</small>
+                            <?php
+                            }
+                            ?>
+                        </div><!--closing input group container-->
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Username </label>
                         <div class=" col-md-6 inputGroupContainer ">

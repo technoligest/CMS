@@ -70,11 +70,9 @@ if ($conn->query($sql) === TRUE) {
 
 $sql = "CREATE TABLE IF NOT EXISTS login (
   login_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  user_id Int NOT NULL,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  random_salt VARCHAR(255) NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
+  random_salt VARCHAR(255) NOT NULL
 );";
 
 if ($conn->query($sql) === TRUE) {
