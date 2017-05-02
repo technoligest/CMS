@@ -29,8 +29,13 @@ elseif(isset($_GET['cat_id'])){
 else{
     header("Location:choose_category.php");
 }
+?>
+<div class="col-md-12 col-sm-12">
+<?php
 
-
-include "includes/full_pages/post_ad.php";
+include "includes/forms/post_ad_form.php";
+?>
+</div>
+<?php
 include "includes/footer.php";
 ?>

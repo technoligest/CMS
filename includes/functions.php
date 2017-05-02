@@ -8,6 +8,7 @@
 
 ?>
 <?php
+define("WEBSITE", "localhost/CMS");
 
 /*
  * test_form_input()

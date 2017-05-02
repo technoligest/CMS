@@ -1,4 +1,8 @@
 <?php
+
+//create all the tables necessary for the project
+
+header('content-type: text/plain');
 $serverName = 'localhost';
 $userName = 'ehab';
 $password = 'ehab';
@@ -47,32 +51,14 @@ if ($conn->query($sql) === TRUE) {
     echo "ERROR creating category sections table\n";
 }
 
-//creating the users and login tables
-$sql = "CREATE TABLE IF NOT EXISTS users (
-  user_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  registeration_date DATETIME NOT NULL,
-  user_firstname VARCHAR(255) NOT NULL,
-  user_lastname VARCHAR(255) NOT NULL,
-  user_email VARCHAR(100) NOT NULL,
-  user_address VARCHAR(255) NOT NULL,
-  user_phone VARCHAR(20) NOT NULL,
-  user_role INT NOT NULL,
-  user_image TEXT NOT NULL,
-  user_location_id INT(4),
-  FOREIGN KEY(user_location_id) REFERENCES locations(location_id)
-);";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Users table successfully created\n";
-} else {
-    echo "ERROR creating Users table\n";
-}
 
 $sql = "CREATE TABLE IF NOT EXISTS login (
   login_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  random_salt VARCHAR(255) NOT NULL
+  activation_link VARCHAR(255) NOT NULL,
+  activated VARCHAR(20) NOT NULL
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -81,18 +67,18 @@ if ($conn->query($sql) === TRUE) {
     echo "ERROR creating login table\n";
 }
 
-
+echo "HIIIIIifb,dsakhafsjdI";
 
 $sql = "CREATE TABLE IF NOT EXISTS ads (
   ad_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ad_type VARCHAR(255) NOT NULL,
   ad_price INT(20) NOT NULL,
   ad_for_sale_by VARCHAR(20) NOT NULL,
+  ad_date DATETIME NOT NULL,
 
   ad_title VARCHAR(255) NOT NULL,
   ad_description TEXT NOT NULL,
   ad_location_id INT(4) NOT NULL,
-
 
   ad_user_email VARCHAR(255) NOT NULL,
   ad_user_phone VARCHAR(15) NOT NULL,
@@ -113,27 +99,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "ERROR creating Ads table\n";
 }
-echo "<br>"."<br>".$sql."<br>"."<br>";
 
-
-
-
-$sql = "CREATE TABLE IF NOT EXISTS comments (
-  comment_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  comment_post_id INT NOT NULL,
-  comment_author VARCHAR(255) NOT NULL,
-  comment_email VARCHAR(255) NOT NULL,
-  comment_content TEXT NOT NULL,
-  comment_date DATETIME NOT NULL,
-  comment_status VARCHAR(255) NOT NULL,
-  FOREIGN KEY (comment_post_id) REFERENCES posts(post_id)
-);";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Comments table successfully created\n";
-} else {
-    echo "ERROR creating Comments table\n";
-}
 
 $sql = "CREATE TABLE IF NOT EXISTS pictures (
   pic_ad_id INT NOT NULL,
@@ -148,4 +114,47 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
+//$conn->close();
+
+
+
+////creating the users and login tables
+//$sql = "CREATE TABLE IF NOT EXISTS users (
+//  user_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+//  registeration_date DATETIME NOT NULL,
+//  user_firstname VARCHAR(255) NOT NULL,
+//  user_lastname VARCHAR(255) NOT NULL,
+//  user_email VARCHAR(100) NOT NULL,
+//  user_address VARCHAR(255) NOT NULL,
+//  user_phone VARCHAR(20) NOT NULL,
+//  user_role INT NOT NULL,
+//  user_image TEXT NOT NULL,
+//  user_location_id INT(4),
+//  FOREIGN KEY(user_location_id) REFERENCES locations(location_id)
+//);";
+//
+//if ($conn->query($sql) === TRUE) {
+//    echo "Users table successfully created\n";
+//} else {
+//    echo "ERROR creating Users table\n";
+//}
+
+
+
+//$sql = "CREATE TABLE IF NOT EXISTS comments (
+//  comment_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+//  comment_post_id INT NOT NULL,
+//  comment_author VARCHAR(255) NOT NULL,
+//  comment_email VARCHAR(255) NOT NULL,
+//  comment_content TEXT NOT NULL,
+//  comment_date DATETIME NOT NULL,
+//  comment_status VARCHAR(255) NOT NULL,
+//  FOREIGN KEY (comment_post_id) REFERENCES posts(post_id)
+//);";
+//
+//if ($conn->query($sql) === TRUE) {
+//    echo "Comments table successfully created\n";
+//} else {
+//    echo "ERROR creating Comments table\n";
+//}
 ?>

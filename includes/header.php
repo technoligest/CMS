@@ -82,7 +82,7 @@ session_start();
         <!--This is the alpha release of bootstrap 4-->
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
 
-        <title>Home page</title>
+        <title>SOLD</title>
     </head>
     <body>
         <!-- Container -->
@@ -123,4 +123,12 @@ Available: http://getbootstrap.com/components/#nav
                         }
                         ?>
                     </h1>
+                    <?php
+                    if(isset($_GET['successMessage'])){
+                        echo "<div class='alert alert-success' role='alert'><b>{$_GET['successMessage']}</b></div>";
+                    }
+                    elseif(isset($_GET['failureMessage'])){
+                        echo "<div class='alert alert-danger' role='alert'><b>{$_GET['failureMessage']}</b></div>";
+                    }
+                    ?>
                 </header>

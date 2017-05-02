@@ -41,7 +41,6 @@
 <script src="js/cms_scripts.php"></script>
 
 
-
 </body>
 </html>
 
@@ -49,5 +48,4 @@
 
 <?php
 require_once("includes/close_db.php");
-
 ?>

@@ -37,46 +37,43 @@ $active=basename($_SERVER['PHP_SELF']);
 
             <div class="navbar-right">
                 <div>
-                    <?php
-                    if(isset($_SESSION) && isset($_SESSION['username'])){
-                    ?>
-                    <ul class="nav navbar-nav navbar-right">
 
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php
+                        if(isset($_SESSION) && isset($_SESSION['username'])){
+                        ?>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['firstname'].' '.$_SESSION['lastname']; ?><span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><? echo $_SESSION['username']; ?><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <?php
-                        if($_SESSION['role']==0 ||$_SESSION['role']==1){
-                            echo "<li><a href=\"admin/dashboard.php\">Dashboard</a></li>";
-                        }
-                                ?>
                                 <li><a href="admin/profile.php">Profile</a></li>
                                 <li><a href="includes/logout.php">Logout</a></li>
                             </ul>
                         </li>
-                    </ul>
-                    <?php
-                    }
-                    ?>
-                </div><!-- /.navbar-collapse -->
-                
-                   <ul class="nav navbar-nav">
-                <li>
-                    <a href="login.php">Login</a>
-                </li>
-                       <li>
-                    <a href="signup.php">Signup</a>
-                </li>
-            </ul>
-                
-                <?php 
-                if($active!="post_ad.php" && $active!="choose_category.php"){
-                ?>
-                <a class="navbar-nav btn btn-success navbar-btn" href="choose_category.php">Post Ad</a>
+                        <?php
+                        }
+                        else{
+                        ?>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="login.php">Login</a>
+                            </li>
+                            <li>
+                                <a href="signup.php">Signup</a>
+                            </li>
+                        </ul>
+                        <?php
+                        }
+                        ?>
+                        <?php 
+                            if($active!="post_ad.php" && $active!="choose_category.php"){
+                        ?>
 
-                <?php
-                }
-                ?>
+                        <a class="navbar-nav btn btn-success navbar-btn" href="choose_category.php">Post Ad</a>
+                        <?php
+                            }
+                        ?>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
             </div>
         </div>
     </div>
