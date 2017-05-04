@@ -26,7 +26,6 @@ $result = $conn->query($sql);
                 echo(print_post($row));
             }
             ?>
-
         </div>
     </div>
 
@@ -42,19 +41,19 @@ function print_post($row)
                 <img src="https://placehold.it/200x150" alt="Ad image" class="img-responsive center-block">
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-10 col-xs-12">
                 <div class="row">
-                    <h3 class="col-md-9">
+                    <h3 class="col-md-9 col-sm-9 col-xs-10">
                         {$row['ad_title']}
                     </h3>
-                    <h3 class="col-md-3">
+                    <h3 class="col-md-3 col-sm-3 col-xs-2">
                     <span class="pull-right">
                         \${$row['ad_price']}
                         </span>
                     </h3>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-sm 12 col-xs-12">
                     <p> $ad_description </p>
                     </div>
                 </div>

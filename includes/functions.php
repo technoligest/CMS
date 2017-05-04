@@ -6,9 +6,50 @@
 	This is the functions script, some functions might be necessary on all pages.
 	****************************************************************************************************/
 
-?>
-<?php
 define("WEBSITE", "localhost/CMS");
+
+
+//this function takes a template and list of items and replaces every key in the template with its value
+function replaceParameters($items, $template){
+    foreach($items as $key=>$value){
+        $template = str_replace(
+            $key,
+            $value,
+            $template);
+    }
+    return $template;
+}
+
+//this function takes parameters and sends an email accordingly
+function sendEmail($recipients, $sender, $template, $subject){
+    try{
+        require '../../phpmailer/PHPMailerAutoload.php';
+
+        preg_match_all("/([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/", $recipients, $recipient_addresses, PREG_OFFSET_CAPTURE);
+
+        if (!count($recipient_addresses[0])) {
+            die('MF001');
+        }
+
+
+        $mail = new PHPMailer();
+        $mail->From = "technoligest@gmail.com";
+
+        foreach ($recipient_addresses[0] as $key => $value) {
+            $mail->addAddress($value[0]);
+        }
+        $mail->CharSet = 'utf-8';
+        $mail->Subject = $subject;
+        $mail->MsgHTML($template);
+        $mail->send();
+    } catch (phpmailerException $e) {
+        die('MF254');
+    } catch (Exception $e) {
+        die('MF255');
+    }
+}
+
+
 
 /*
  * test_form_input()

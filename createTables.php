@@ -86,7 +86,7 @@ $sql = "CREATE TABLE IF NOT EXISTS ads (
   ad_cat_section_id INT(4) NOT NULL,
 
   ad_approve_status VARCHAR(10) NOT NULL,
-  ad_status VARCHAR(10) NOT NULL,
+  ad_activation_link VARCHAR(256) NOT NULL,
 
   FOREIGN KEY (ad_location_id) references locations(location_id),
   FOREIGN KEY (ad_cat_id) references category(cat_id),
@@ -94,6 +94,7 @@ $sql = "CREATE TABLE IF NOT EXISTS ads (
 );";
 //ad status is to know if the ad has been activated or not.
 //ad approve status tells us if it has been approved or not
+
 if ($conn->query($sql) === TRUE) {
     echo "Ads table successfully created\n";
 } else {
