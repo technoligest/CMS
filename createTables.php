@@ -11,13 +11,13 @@ $dbName = 'cms';
 $conn = new mysqli($serverName, $userName, $password, $dbName);
 
 if ($conn->connect_error) {
-    die('connection error '. $conn->connect_error);
+    die('connection error ' . $conn->connect_error);
 }
 // Creating the locations table
-$sql = "CREATE TABLE IF NOT EXISTS locations (
+$sql = "CREATE TABLE IF NOT EXISTS locs (
   loc_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
   loc_name VARCHAR(255) NOT NULL,
-  loc_parent INT(4) NOT NULL
+  loc_parent INT(4)
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -30,7 +30,8 @@ if ($conn->query($sql) === TRUE) {
 $sql = "CREATE TABLE IF NOT EXISTS categories (
   cat_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
   cat_title VARCHAR(255) NOT NULL,
-  cat_parent INT(4) NOT NULL
+  cat_parent INT(4),
+  FOREIGN KEY (cat_parent) references categories(cat_id)
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -48,16 +49,15 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 );";
 
 if ($conn->query($sql) === TRUE) {
-    echo "login table successfully created\n";
+    echo "users table successfully created\n";
 } else {
-    echo "ERROR creating login table\n";
+    echo "ERROR creating users table\n";
 }
 
 $sql = "CREATE TABLE IF NOT EXISTS login (
-  login_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  login_date 
-  
-  FOREIGN KEY (ad_location_id) references locations(location_id),
+  login_user_id INT NOT NULL,
+  login_date VARCHAR(25) NOT NULL,
+  FOREIGN KEY (login_user_id) references users(user_id)
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -66,8 +66,6 @@ if ($conn->query($sql) === TRUE) {
     echo "ERROR creating login table\n";
 }
 
-
-echo "HIIIIIifb,dsakhafsjdI";
 
 $sql = "CREATE TABLE IF NOT EXISTS ads (
   ad_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -83,17 +81,15 @@ $sql = "CREATE TABLE IF NOT EXISTS ads (
   ad_user_email VARCHAR(255) NOT NULL,
   ad_user_phone VARCHAR(15) NOT NULL,
   ad_cat_id INT(4) NOT NULL,
-  ad_cat_section_id INT(4) NOT NULL,
 
   ad_approve_status VARCHAR(10) NOT NULL,
   ad_activation_link VARCHAR(256) NOT NULL,
-
-  FOREIGN KEY (ad_location_id) references locations(location_id),
-  FOREIGN KEY (ad_cat_id) references category(cat_id),
-  FOREIGN KEY (ad_cat_section_id) references category_sections(cat_section_id)
+  
+  ad_num_views INT(10) NOT NULL,
+  
+  FOREIGN KEY (ad_location_id) references locs(loc_id),
+  FOREIGN KEY (ad_cat_id) references categories(cat_id)
 );";
-//ad status is to know if the ad has been activated or not.
-//ad approve status tells us if it has been approved or not
 
 if ($conn->query($sql) === TRUE) {
     echo "Ads table successfully created\n";
@@ -109,14 +105,13 @@ $sql = "CREATE TABLE IF NOT EXISTS pics (
 );";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Pictures table successfully created\n";
+    echo "Pics table successfully created\n";
 } else {
-    echo "ERROR creating Pictures table\n";
+    echo "ERROR creating Pics table\n";
 }
 
 
 require("includes/close_db.php");
-
 
 
 ////creating the users and login tables
@@ -139,7 +134,6 @@ require("includes/close_db.php");
 //} else {
 //    echo "ERROR creating Users table\n";
 //}
-
 
 
 //$sql = "CREATE TABLE IF NOT EXISTS comments (

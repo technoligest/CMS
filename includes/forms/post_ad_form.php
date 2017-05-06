@@ -1,5 +1,6 @@
 <!--enctype is SUPER important for form input-->
-<form id="post_ad_form" class="form-horizontal" action="includes/form_submission/post_ad_submission.php" method="post" enctype="multipart/form-data" data-toggle="validator">
+<form id="post_ad_form" class="form-horizontal" action="includes/form_submission/post_ad_submission.php" method="post"
+      enctype="multipart/form-data" data-toggle="validator">
     <fieldset>
         <div class="panel panel-default">
             <div class="panel-heading"><b>1</b> Ad Details</div>
@@ -9,10 +10,11 @@
                     <div class=" col-md-6 inputGroupContainer ">
                         <div class="btn-group" data-toggle="validator">
                             <label class="btn btn-default ">
-                                <input type="radio"  name="ad_type" id="inlineRadio1" value="offering" required> Selling
+                                <input type="radio" name="ad_type" id="inlineRadio1" value="offering" required> Selling
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio"  name="ad_type" id="inlineRadio2" value="wanting" required> Looking for
+                                <input type="radio" name="ad_type" id="inlineRadio2" value="wanting" required> Looking
+                                for
                             </label>
                         </div>
                         <div class="help-block with-errors"></div>
@@ -26,7 +28,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
                             <input name="ad_price" placeholder="Price" class="form-control" type="text">
-                        </div><!--closing input group--> 
+                        </div><!--closing input group-->
                     </div><!--closing input group container-->
                 </div><!--closing form group-->
                 <div class="form-group">
@@ -34,10 +36,11 @@
                     <div class=" col-md-6 inputGroupContainer ">
                         <div class="btn-group" data-toggle="validator">
                             <label class="btn btn-default ">
-                                <input type="radio"  name="for_sale_by" id="inlineRadio3" value="tags" required> Individual
+                                <input type="radio" name="for_sale_by" id="inlineRadio3" value="tags" required>
+                                Individual
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio"  name="for_sale_by" id="inlineRadio4" value="tags" required> Business
+                                <input type="radio" name="for_sale_by" id="inlineRadio4" value="tags" required> Business
                             </label>
                         </div>
                         <div class="help-block with-errors"></div>
@@ -50,7 +53,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
                             <input name="ad_title" placeholder="Title" class="form-control" type="text">
-                        </div><!--closing input group--> 
+                        </div><!--closing input group-->
                     </div><!--closing input group container-->
                 </div><!--closing form group-->
                 <!-- Text input-->
@@ -59,8 +62,9 @@
                     <div class="col-md-6 inputGroupContainer">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
-                            <textarea name="ad_description" placeholder="Your ad" class="form-control" type="text" spellcheck="true" req="req" data-writefull-timeout="null"></textarea>
-                        </div><!--closing input group--> 
+                            <textarea name="ad_description" placeholder="Your ad" class="form-control" type="text"
+                                      spellcheck="true" req="req" data-writefull-timeout="null"></textarea>
+                        </div><!--closing input group-->
                     </div><!--closing input group container-->
                 </div><!--closing form group-->
 
@@ -75,8 +79,8 @@
                                 <?php
                                 $sql = "SELECT * FROM locations";
                                 $retrieve_locations_result = $conn->query($sql);
-                                if($retrieve_locations_result && $retrieve_locations_result->num_rows >0 ){
-                                    while($row=$retrieve_locations_result->fetch_assoc()){
+                                if ($retrieve_locations_result && $retrieve_locations_result->num_rows > 0) {
+                                    while ($row = $retrieve_locations_result->fetch_assoc()) {
                                         echo "<option value=\"{$row['location_id']}\">{$row['location_name']}</option>";
                                     }
                                 }
@@ -109,21 +113,20 @@
                 </div>
                 <!-- Text input-->
                 <?php
-                if(!isset($_SESSION['username'])){
-                ?>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">E-Mail</label>
-                    <div class="col-md-6 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                if (!isset($_SESSION['username'])) {
+                    ?>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">E-Mail</label>
+                        <div class="col-md-6 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 
-                            <input name="ad_email" placeholder="E-Mail Address" class="form-control" type="text">  
+                                <input name="ad_email" placeholder="E-Mail Address" class="form-control" type="text">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php
-                }
-                else{
+                    <?php
+                } else {
                     echo "<input name=\"ad_email\" placeholder=\"E-Mail Address\" class=\"form-control\" type=\"hidden\" value=\"{$_SESSION['username']}\">";
                 }
                 ?>
@@ -135,12 +138,14 @@
                 <!-- Button -->
                 <div class="form-group">
                     <div class="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5">
-                        <button type="submit" name="post_ad_btn" class="btn btn-success">Preview Ad <span class="glyphicon glyphicon-send"></span></button>
+                        <button type="submit" name="post_ad_btn" class="btn btn-success">Preview Ad <span
+                                    class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
             </div><!--Closing panel body-->
         </div><!--closing the panel 4-->
-        <input type="hidden" name="ad_cat_id" value="<?php echo test_form_input($_GET['cat_id']);?>" type="text">
-        <input type="hidden" name="ad_cat_section_id" value="<?php echo test_form_input($_GET['cat_section_id']);?>" type="text">
+        <input type="hidden" name="ad_cat_id" value="<?php echo test_form_input($_GET['cat_id']); ?>" type="text">
+        <input type="hidden" name="ad_cat_section_id" value="<?php echo test_form_input($_GET['cat_section_id']); ?>"
+               type="text">
     </fieldset>
 </form>

@@ -12,13 +12,12 @@ require "includes/functions.php";
 include "includes/header.php";
 ?>
 
-		<div class="col-md-8 col-sm-12 col-no-left-padding">
-		<?php
-			include 'includes/report_form.php';
-		?>
-		</div>
-		
+<div class="col-md-8 col-sm-12 col-no-left-padding">
+    <?php
+    include 'includes/report_form.php';
+    ?>
+</div>
+
 <?php
 include "includes/sidebar.php";
 include "includes/footer.php";
-?>

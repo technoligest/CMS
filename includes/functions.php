@@ -1,17 +1,18 @@
 <?php
 /****************************************************************************************************
-	R. V. Sampangi. 2017. Solution for Server Side Scripting Assignment 3. In INFX2670: Introduction to 
-	Server Side Scripting, Faculty of Computer Science, Dalhousie University, NS, Canada.
-
-	This is the functions script, some functions might be necessary on all pages.
-	****************************************************************************************************/
+ * R. V. Sampangi. 2017. Solution for Server Side Scripting Assignment 3. In INFX2670: Introduction to
+ * Server Side Scripting, Faculty of Computer Science, Dalhousie University, NS, Canada.
+ *
+ * This is the functions script, some functions might be necessary on all pages.
+ ****************************************************************************************************/
 
 define("WEBSITE", "localhost/CMS");
 
 
 //this function takes a template and list of items and replaces every key in the template with its value
-function replaceParameters($items, $template){
-    foreach($items as $key=>$value){
+function replaceParameters($items, $template)
+{
+    foreach ($items as $key => $value) {
         $template = str_replace(
             $key,
             $value,
@@ -21,8 +22,9 @@ function replaceParameters($items, $template){
 }
 
 //this function takes parameters and sends an email accordingly
-function sendEmail($recipients, $sender, $template, $subject){
-    try{
+function sendEmail($recipients, $sender, $template, $subject)
+{
+    try {
         require '../../phpmailer/PHPMailerAutoload.php';
 
         preg_match_all("/([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/", $recipients, $recipient_addresses, PREG_OFFSET_CAPTURE);
@@ -50,14 +52,14 @@ function sendEmail($recipients, $sender, $template, $subject){
 }
 
 
-
 /*
  * test_form_input()
  * - A function that takes form-submitted data ($data),
  *   and sanitizes it.
  * - Returns sanitized data ($data).
  */
-function test_form_input($data) {
+function test_form_input($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -72,12 +74,13 @@ function test_form_input($data) {
  *   new line characters or line-breaks.
  * - Returns sanitized data ($content).
  */
-function create_paragraphs_from_DBtext($content) {
+function create_paragraphs_from_DBtext($content)
+{
 
     $content = nl2br($content, false);
 
-    $content = str_replace( '<br><br>', '</p><p>', $content );
-    $content = str_replace( '<br>', '</p><p>', $content );
+    $content = str_replace('<br><br>', '</p><p>', $content);
+    $content = str_replace('<br>', '</p><p>', $content);
 
     return $content;
 }
@@ -93,30 +96,27 @@ function create_paragraphs_from_DBtext($content) {
  * ~~NOTE~~ AS OF ASSIGNMENT 3, THIS FUNCTION IS NO LONGER USED
  *          TO DISPLAY POSTS.
  */
-function read_post($post_file, $current_page) {
+function read_post($post_file, $current_page)
+{
     $line_number = 0;
 
-    while(!feof($post_file)) {
+    while (!feof($post_file)) {
         $line = fgets($post_file);
         $line = trim($line);
 
         if ($line_number == 0) {
             echo "<h2 class='display-2'><a href='posts.php'>$line</a></h2>";
-        }
-        elseif ($line_number == 2) {
+        } elseif ($line_number == 2) {
             echo "<p><a href='#'>$line</a></p>";
-        }
-        elseif ($line_number == 3) {
+        } elseif ($line_number == 3) {
             if ($current_page == "index.php") {
                 $date_time = explode(",", $line);
                 echo "<p class='bottom-margin'>$date_time[0]</p>";
-            }
-            elseif ($current_page == "posts.php") {
+            } elseif ($current_page == "posts.php") {
                 echo "<p>$line</p>";
                 echo "<hr>";
             }
-        }
-        elseif ($line_number > 4) {
+        } elseif ($line_number > 4) {
             if ($line != "") {
                 echo "<p>$line</p>";
             }
@@ -134,7 +134,8 @@ function read_post($post_file, $current_page) {
  * - Displays all categories in the form of a table, 
  *   wherever the function is called.
  */
-function read_all_categories() {
+function read_all_categories()
+{
     global $conn;
 
     $sql = "SELECT * FROM category";
@@ -169,8 +170,7 @@ _END;
             echo "&nbsp;<a class='btn btn-danger' href='categories.php?delete_category=$cat_id'>DELETE</a></td>";
             echo "</tr>";
         }
-    }
-    else {
+    } else {
         echo "<tr>";
         echo "<td colspan='3'>No categories exist yet.</td>";
         echo "</tr>";
@@ -189,7 +189,8 @@ _END;
  *   that can be included within the <select> HTML element
  *   to create drop-down selection options in a form.
  */
-function categories_into_dropdown_options() {
+function categories_into_dropdown_options()
+{
     global $conn;
 
     $sql = "SELECT * FROM category";
@@ -202,8 +203,7 @@ function categories_into_dropdown_options() {
 
             echo "<option value='$cat_id'>$cat_title</option>";
         }
-    }
-    else {
+    } else {
         echo "No categories exist yet.";
     }
 }
@@ -216,15 +216,15 @@ function categories_into_dropdown_options() {
  * - @input: $category_title: title of newly created category
  * - Does not return anything.
  */
-function insert_category($category_title) {
+function insert_category($category_title)
+{
     global $conn;
 
     $category_title = test_form_input($category_title);
 
     if (empty($category_title)) {
         echo "<p></em>Category title cannot be empty!</em></p>";
-    }
-    else {
+    } else {
         $sql = "INSERT INTO category(cat_title) VALUES('$category_title')";
 
         $result_create_category = $conn->query($sql);
@@ -243,7 +243,8 @@ function insert_category($category_title) {
  * - @input: $category_id: ID of category to be deleted
  * - @return: TRUE, if operation was successful; FALSE, otherwise.
  */
-function delete_category($category_id) {
+function delete_category($category_id)
+{
     global $conn;
 
     $sql = "DELETE FROM category WHERE cat_id = $category_id";
@@ -253,8 +254,7 @@ function delete_category($category_id) {
     if (!$result_delete_category) {
         echo "<p><em>Sorry, the category could not be deleted!</em></p>" . $conn->error;
         return FALSE;
-    }
-    else {
+    } else {
         return TRUE;
     }
 }
@@ -265,16 +265,17 @@ function delete_category($category_id) {
  *
  *
  */
-function get_new_picture_id(){
-    while(true){
+function get_new_picture_id()
+{
+    while (true) {
         $seed = str_split('abcdefghijklmnopqrstuvwxyz'
-                          .'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-                          .'0123456789!@#$%^&*()'); // and any other characters
+            . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            . '0123456789!@#$%^&*()'); // and any other characters
         shuffle($seed); // probably optional since array_is randomized; this may be redundant
         $rand = '';
         foreach (array_rand($seed, 10) as $k) $rand .= $seed[$k];
         $result = $conn->query("SELECT ad_picture_id FROM ads WHERE ad_picture_id={$rand}");
-        if(!$result || $result->num_rows<1){
+        if (!$result || $result->num_rows < 1) {
             return $rand;
         }
     }

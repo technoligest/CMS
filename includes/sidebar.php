@@ -36,44 +36,41 @@ This script displays the sidebar on all pages:
                     </label>
                 </div>
             </form>
-            
+
         </div>
-    </div>	
+    </div>
 
     <div class="panel panel-default">
 
         <div class="panel-heading">
             <?php
-            if(!isset($_SESSION) || !isset($_SESSION['username']) )
+            if (!isset($_SESSION) || !isset($_SESSION['username']))
                 echo "Login to your account";
             else
                 echo "You're logged in.";
-            ?>        
+            ?>
         </div>
         <div class="panel-body">
             <?php
             date_default_timezone_set('America/Halifax');
 
-            if (isset($_GET['loginError']) && $_GET['loginError']==TRUE) {
+            if (isset($_GET['loginError']) && $_GET['loginError'] == TRUE) {
                 echo "<p class='text-danger'>Username or password is wrong.</p>";
                 include 'login_form.php';
-            }
-            elseif(isset($_GET['unauthAccess']) && $_GET['unauthAccess'] == TRUE){
+            } elseif (isset($_GET['unauthAccess']) && $_GET['unauthAccess'] == TRUE) {
                 echo "<p class='text-danger'>You need to log in to access the user profile</p>";
                 include 'login_form.php';
-            }
-            elseif (isset($_SESSION) && isset($_SESSION['username'])) {
+            } elseif (isset($_SESSION) && isset($_SESSION['username'])) {
                 $user = $_SESSION['username'];
                 echo "<p class='text-primary'>Welcome, $user!<br> You last accessed this site: {$_SESSION['currentDate']} </p>";
-            }
-            elseif (!isset($_POST['login'])) {
+            } elseif (!isset($_POST['login'])) {
                 include 'login_form.php';
             }
             ?>
 
 
         </div>
-    </div>	
+    </div>
 
     <?php
     $report_form_start = <<<ENDREPORT

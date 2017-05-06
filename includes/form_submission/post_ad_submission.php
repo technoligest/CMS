@@ -48,18 +48,18 @@ if (isset($_POST['post_ad_btn'])) {
     $ad_status = "draft";//user has to sign in
 
     $r = $statement->execute();
-    echo $statement->error;
+    if ($statement->error) {
+        $message = urldecode("Ad was not posted. Please try again.");
+        header("Location: ../../index.php?failureMessage=$message");
+    }
     $id = $conn->insert_id;
 
     $statement->reset();
     if (isset($_POST['fileuploader-list-files']) && $_POST['fileuploader-list-files']) {
         $arr = json_decode($_POST['fileuploader-list-files']);
         foreach ($arr as &$picture_name) {
-            $statement = $conn->prepare("INSERT INTO pictures(pic_ad_id, picture_name)VALUES(?,?)");
-            $pic_name =
-                substr($picture_name, 3);
-            echo $picture_name . "\n";
-            echo $pic_name . "\n\n";
+            $statement = $conn->prepare("INSERT INTO pictures(pic_ad_id, pic_name)VALUES(?,?)");
+            $pic_name = substr($picture_name, 3);
             $statement->bind_param("is", $id, $pic_name);
             $statement->execute();
             $statement->reset();
@@ -67,10 +67,10 @@ if (isset($_POST['post_ad_btn'])) {
     }
 
     $recipients = $email;
-    $sender = "technoligest@gmail.com";
+    $sender = "info@yaser.ca";
     $subject = "Activate your ad today!";
     $link = generateLink($conn);
-    $message = htmlentities("Hello!\n\nPlease activate your post through this link \n\n <a href\"" . WEBSITE."/activate?postid=$link" . "\">" . WEBSITE."/activate?postid=$link" . "</a>\n\nThank you.\n");
+    $message = htmlentities("Hello!\n\nPlease activate your post through this link \n\n <a href\"" . WEBSITE . "/activate?postid=$link" . "\">" . WEBSITE . "/activate?postid=$link" . "</a>\n\nThank you.\n");
     $template = replaceParameters(["<!--message-->" => "$message"], file_get_contents('../../phpmailer/templates/general_template.tpl'));
 
     sendEmail($recipients, $sender, $template, $subject);

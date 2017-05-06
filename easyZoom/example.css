@@ -1,0 +1,71 @@
+
+p, dl, ul, ol {
+    margin: 0 0 1.5em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 0 0 1em;
+    font-size: .8125em;
+    color: #555;
+}
+
+ul, ol {
+    padding-left: 1.5em;
+}
+
+a img {
+    border: 0;
+}
+
+figure {
+    margin: 0;
+}
+
+pre, code, var, tt {
+    font-size: 15px;
+    font-style: normal;
+    font-family: Consolas, "Lucida Console", Monaco, monospace;
+}
+
+pre {
+    overflow: auto;
+    padding: 1em .5em;
+    border: 1px solid #333;
+    line-height: 1.25;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.cont {
+    width: 400px;
+    margin: 0 auto;
+
+}
+
+.thumbnails {
+    overflow: hidden;
+    margin: 1em 0;
+    padding: 0;
+    text-align: center;
+}
+
+.thumbnails li {
+    display: inline-block;
+    width: 80px;
+    margin: 0 5px;
+}
+
+.thumbnails img {
+    display: block;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.toggle {
+    display: block;
+    margin: 10px auto 1.5em;
+}

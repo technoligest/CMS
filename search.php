@@ -1,10 +1,7 @@
 <?php
 require_once("includes/functions.php");
 $sql = "";
-if (isset($_GET['cat_section_id'])) {
-    $cat_section_id = test_form_input($_GET['cat_section_id']);
-    $sql = "SELECT * FROM ads WHERE ads.ad_cat_section_id = '$cat_section_id' ";
-} elseif (isset($_GET['cat_id'])) {
+if (isset($_GET['cat_id'])) {
     $cat_id = test_form_input($_GET['cat_id']);
     $sql = "SELECT * FROM ads WHERE ads.ad_cat_id='$cat_id'";
 } elseif (isset($_GET['general_search'])) {
@@ -64,19 +61,12 @@ function print_post($row)
     </div>
 START;
     return $result;
+}
 
+//this returns the summary of the description of  given post so it does not overdlow.
+function getDescriptionSummary($text)
+{
+    return substr($text, 0, 150) . "...";
 }
-function getDescriptionSummary($text){
-    return substr($text,0,150)."...";
-}
-//<div class="row col-md-9 col-sm-10 col-xs-12">
-//<div class="col-md-10 col-sm-9 col-xs-9">
-//                    <p> Metadata</p>
-//                </div>
-//                <div class="col-md-2 col-sm-3 col-xs-3">
-//                    <p> Metadata</p>
-//                </div>
-//            </div>
 
 require_once("includes/footer.php");
-?>

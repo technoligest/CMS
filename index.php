@@ -13,4 +13,3 @@ require "includes/functions.php";
 include "includes/header.php";
 include "includes/full_pages/view_categories.php";
 include "includes/footer.php";
-?>
