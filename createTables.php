@@ -15,8 +15,9 @@ if ($conn->connect_error) {
 }
 // Creating the locations table
 $sql = "CREATE TABLE IF NOT EXISTS locations (
-  location_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  location_name VARCHAR(255) NOT NULL
+  loc_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  loc_name VARCHAR(255) NOT NULL,
+  loc_parent INT(4) NOT NULL
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -26,9 +27,10 @@ if ($conn->query($sql) === TRUE) {
 }
 
 //creating the category table
-$sql = "CREATE TABLE IF NOT EXISTS category (
+$sql = "CREATE TABLE IF NOT EXISTS categories (
   cat_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  cat_title VARCHAR(255) NOT NULL
+  cat_title VARCHAR(255) NOT NULL,
+  cat_parent INT(4) NOT NULL
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -37,28 +39,12 @@ if ($conn->query($sql) === TRUE) {
     echo "ERROR creating category table\n";
 }
 
-//creating the category sections table
-$sql = "CREATE TABLE IF NOT EXISTS category_sections (
-  cat_section_id INT(4) NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  cat_section_title VARCHAR(255) NOT NULL,
-  cat_id INT (4) NOT NULL,
-  FOREIGN KEY (cat_id) REFERENCES category(cat_id)
-);";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Category sections table succesfully created\n";
-} else {
-    echo "ERROR creating category sections table\n";
-}
-
-
-
-$sql = "CREATE TABLE IF NOT EXISTS login (
-  login_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  username VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  activation_link VARCHAR(255) NOT NULL,
-  activated VARCHAR(20) NOT NULL
+$sql = "CREATE TABLE IF NOT EXISTS users (
+  user_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  user_username VARCHAR(255) NOT NULL,
+  user_password VARCHAR(255) NOT NULL,
+  user_activation_link VARCHAR(255) NOT NULL
 );";
 
 if ($conn->query($sql) === TRUE) {
@@ -67,6 +53,20 @@ if ($conn->query($sql) === TRUE) {
     echo "ERROR creating login table\n";
 }
 
+$sql = "CREATE TABLE IF NOT EXISTS login (
+  login_id INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
+  login_date 
+  
+  FOREIGN KEY (ad_location_id) references locations(location_id),
+);";
+
+if ($conn->query($sql) === TRUE) {
+    echo "login table successfully created\n";
+} else {
+    echo "ERROR creating login table\n";
+}
+
+
 echo "HIIIIIifb,dsakhafsjdI";
 
 $sql = "CREATE TABLE IF NOT EXISTS ads (
@@ -74,7 +74,7 @@ $sql = "CREATE TABLE IF NOT EXISTS ads (
   ad_type VARCHAR(255) NOT NULL,
   ad_price INT(20) NOT NULL,
   ad_for_sale_by VARCHAR(20) NOT NULL,
-  ad_date DATETIME NOT NULL,
+  ad_date VARCHAR(25) NOT NULL,
 
   ad_title VARCHAR(255) NOT NULL,
   ad_description TEXT NOT NULL,
@@ -102,9 +102,9 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-$sql = "CREATE TABLE IF NOT EXISTS pictures (
+$sql = "CREATE TABLE IF NOT EXISTS pics (
   pic_ad_id INT NOT NULL,
-  picture_name VARCHAR(255) NOT NULL,
+  pic_name VARCHAR(255) NOT NULL,
   FOREIGN KEY (pic_ad_id) REFERENCES ads(ad_id)
 );";
 
@@ -115,7 +115,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 
-//$conn->close();
+require("includes/close_db.php");
 
 
 
