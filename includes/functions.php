@@ -127,58 +127,6 @@ function read_post($post_file, $current_page)
 }
 
 
-/*
- * read_all_categories()
- * - A function that finds all categories saved in the
- *   table named "category".
- * - Displays all categories in the form of a table, 
- *   wherever the function is called.
- */
-function read_all_categories()
-{
-    global $conn;
-
-    $sql = "SELECT * FROM category";
-    $categories_query_result = $conn->query($sql);
-
-    $category_display_table_header = <<<_END
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th colspan="2">Category Title</th>
-					</tr>
-				</thead>
-				<tbody>
-_END;
-
-    $category_display_table_footer = <<<_END
-				</tbody>
-			</table>
-_END;
-
-    echo $category_display_table_header;
-
-    if ($categories_query_result->num_rows > 0) {
-        while ($row = $categories_query_result->fetch_assoc()) {
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
-            echo "<tr>";
-            echo "<td>$cat_id</td>";
-            echo "<td>$cat_title</td>";
-            echo "<td class='text-right'><a class='btn btn-info' href='categories.php?update_category=$cat_id'>UPDATE</a>";
-            echo "&nbsp;<a class='btn btn-danger' href='categories.php?delete_category=$cat_id'>DELETE</a></td>";
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr>";
-        echo "<td colspan='3'>No categories exist yet.</td>";
-        echo "</tr>";
-    }
-
-    echo $category_display_table_footer;
-
-}
 
 
 /*
@@ -225,7 +173,7 @@ function insert_category($category_title)
     if (empty($category_title)) {
         echo "<p></em>Category title cannot be empty!</em></p>";
     } else {
-        $sql = "INSERT INTO category(cat_title) VALUES('$category_title')";
+        $sql = "INSERT INTO categories(cat_title) VALUES('$category_title')";
 
         $result_create_category = $conn->query($sql);
 
@@ -239,7 +187,7 @@ function insert_category($category_title)
 /*
  * delete_category($category_id)
  * - A function that deletes a specified category
- *   from the table named "category".
+ *   from the table named "categories".
  * - @input: $category_id: ID of category to be deleted
  * - @return: TRUE, if operation was successful; FALSE, otherwise.
  */
@@ -247,16 +195,14 @@ function delete_category($category_id)
 {
     global $conn;
 
-    $sql = "DELETE FROM category WHERE cat_id = $category_id";
+    $sql = "DELETE FROM categories WHERE cat_id = $category_id";
 
     $result_delete_category = $conn->query($sql);
 
-    if (!$result_delete_category) {
-        echo "<p><em>Sorry, the category could not be deleted!</em></p>" . $conn->error;
-        return FALSE;
-    } else {
+    if ($result_delete_category) {
         return TRUE;
     }
+    return FALSE;
 }
 
 
