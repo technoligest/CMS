@@ -164,17 +164,23 @@ function categories_into_dropdown_options()
  * - @input: $category_title: title of newly created category
  * - Does not return anything.
  */
-function insert_category($category_title)
+function insert_category($category_title, $cat_parent=false)
 {
     global $conn;
-
+    
     $category_title = test_form_input($category_title);
 
     if (empty($category_title)) {
         echo "<p></em>Category title cannot be empty!</em></p>";
     } else {
-        $sql = "INSERT INTO categories(cat_title) VALUES('$category_title')";
+        $sql="";
 
+        if($cat_parent=='false'){
+            $sql = "INSERT INTO categories(cat_title, cat_parent) VALUES('$category_title', NULL)";
+        }
+        else{
+            $sql = "INSERT INTO categories(cat_title, cat_parent) VALUES('$category_title', '$cat_parent')";
+        }
         $result_create_category = $conn->query($sql);
 
         if (!$result_create_category) {
@@ -196,7 +202,6 @@ function delete_category($category_id)
     global $conn;
 
     $sql = "DELETE FROM categories WHERE cat_id = $category_id";
-
     $result_delete_category = $conn->query($sql);
 
     if ($result_delete_category) {
@@ -215,8 +220,8 @@ function get_new_picture_id()
 {
     while (true) {
         $seed = str_split('abcdefghijklmnopqrstuvwxyz'
-            . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-            . '0123456789!@#$%^&*()'); // and any other characters
+                          . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                          . '0123456789!@#$%^&*()'); // and any other characters
         shuffle($seed); // probably optional since array_is randomized; this may be redundant
         $rand = '';
         foreach (array_rand($seed, 10) as $k) $rand .= $seed[$k];

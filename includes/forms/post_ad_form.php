@@ -77,11 +77,11 @@
                             <select name="ad_location" class="form-control selectpicker">
                                 <option value=" ">Please select your city</option>
                                 <?php
-                                $sql = "SELECT * FROM locations";
+                                $sql = "SELECT * FROM locs";
                                 $retrieve_locations_result = $conn->query($sql);
                                 if ($retrieve_locations_result && $retrieve_locations_result->num_rows > 0) {
                                     while ($row = $retrieve_locations_result->fetch_assoc()) {
-                                        echo "<option value=\"{$row['location_id']}\">{$row['location_name']}</option>";
+                                        echo "<option value=\"{$row['loc_id']}\">{$row['loc_name']}</option>";
                                     }
                                 }
                                 ?>
@@ -114,18 +114,18 @@
                 <!-- Text input-->
                 <?php
                 if (!isset($_SESSION['username'])) {
-                    ?>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">E-Mail</label>
-                        <div class="col-md-6 inputGroupContainer">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                ?>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">E-Mail</label>
+                    <div class="col-md-6 inputGroupContainer">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 
-                                <input name="ad_email" placeholder="E-Mail Address" class="form-control" type="text">
-                            </div>
+                            <input name="ad_email" placeholder="E-Mail Address" class="form-control" type="text">
                         </div>
                     </div>
-                    <?php
+                </div>
+                <?php
                 } else {
                     echo "<input name=\"ad_email\" placeholder=\"E-Mail Address\" class=\"form-control\" type=\"hidden\" value=\"{$_SESSION['username']}\">";
                 }
@@ -139,13 +139,11 @@
                 <div class="form-group">
                     <div class="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5">
                         <button type="submit" name="post_ad_btn" class="btn btn-success">Preview Ad <span
-                                    class="glyphicon glyphicon-send"></span></button>
+                                                                                                          class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
             </div><!--Closing panel body-->
         </div><!--closing the panel 4-->
         <input type="hidden" name="ad_cat_id" value="<?php echo test_form_input($_GET['cat_id']); ?>" type="text">
-        <input type="hidden" name="ad_cat_section_id" value="<?php echo test_form_input($_GET['cat_section_id']); ?>"
-               type="text">
     </fieldset>
 </form>
