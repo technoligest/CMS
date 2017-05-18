@@ -3,9 +3,9 @@
 ## Features
 1. User Registeration through email and password. 
 2. User account is controlled through their email
-	a. Ads can be posted without logging in
-	b. Logging in allows you to control the ads
-	c. Ads have to be activated through the email. 
+	1. Ads can be posted without logging in
+	2. Logging in allows you to control the ads
+	3. Ads have to be activated through the email. 
 3. Ads are sorted by the date they were posted
 
 ## Future work:
